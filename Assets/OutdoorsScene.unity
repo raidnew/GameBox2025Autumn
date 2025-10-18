@@ -200,8 +200,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19955268}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000006276407, y: 0.9896377, z: -0.14358746, w: -0.00000004325844}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.036324933, y: -0.000000031396013, z: -9.604783e-10, w: 0.99934006}
+  m_LocalPosition: {x: 0.00000011920928, y: 6.8901412e-15, z: -0.00000023841858}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -633,7 +633,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0.5
+    Value: 0
     m_SpeedMode: 0
     m_MaxSpeed: 2
     m_AccelTime: 0.2
@@ -706,8 +706,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456600827}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.53742445, y: 4.749, z: 2.2879598}
+  m_LocalRotation: {x: -3.120997e-16, y: 1, z: 0.0000000144496735, w: 0.000000021599083}
+  m_LocalPosition: {x: 0.53742445, y: 2.749, z: 1.2879598}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -993,8 +993,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274883730}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0000000070601436, y: 0.98686993, z: -0.16151726, w: -0.000000043137454}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.018189477, y: 0.000000017457387, z: 3.312595e-10, w: 0.9998346}
+  m_LocalPosition: {x: 0.00000011920928, y: 6.8901412e-15, z: -0.00000023841858}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1079,8 +1079,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306976515}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0000000078436235, y: 0.9837687, z: -0.1794412, w: -0.000000043001897}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.000000013581723, y: -0.9524067, z: 0.00000001491057, w: 0.30483037}
+  m_LocalPosition: {x: 2.1785557, y: -0.00000021254553, z: 7.354683}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 2, z: -5}
+  m_FollowOffset: {x: 0, y: 0, z: -4}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1319,7 +1319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 2, z: -5}
+  m_FollowOffset: {x: 0, y: 0, z: -4}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1405,7 +1405,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 18
+  m_Priority: 6
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 1504380675}
   m_Follow: {fileID: 769934440}
@@ -1525,7 +1525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 2, z: -5}
+  m_FollowOffset: {x: 0, y: 0, z: -4}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1639,7 +1639,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 200
-  field of view: 90
+  field of view: 40
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -1665,8 +1665,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823688464}
   serializedVersion: 2
-  m_LocalRotation: {x: -3.120997e-16, y: 1, z: 0.0000000144496735, w: 0.000000021599083}
-  m_LocalPosition: {x: 0.53742445, y: 2.749, z: -2.0120401}
+  m_LocalRotation: {x: -0.0000000019260364, y: 0.99934006, z: 0.036324948, w: 0.00000005298742}
+  m_LocalPosition: {x: 0.53742445, y: 2.749, z: 1.2879598}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3115,7 +3115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thirdPersonCamera: {fileID: 456600828}
   _firstPersonCamera: {fileID: 1667611794}
-  _speedRotation: 0.002
+  _speedRotation: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

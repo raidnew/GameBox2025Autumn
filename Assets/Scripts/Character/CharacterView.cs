@@ -2,12 +2,13 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public class CharackerView : MonoBehaviour, IWatcher
 {
     [SerializeField] private CinemachineVirtualCameraBase _thirdPersonCamera;
     [SerializeField] private CinemachineVirtualCameraBase _firstPersonCamera;
-    [SerializeField] private float _speedRotation = 0.002f;
+    [SerializeField] private float _speedRotation = 0.01f;
 
     private CinemachineVirtualCameraBase _currentCamera;
     private bool _calcLookByCam;
@@ -37,7 +38,7 @@ public class CharackerView : MonoBehaviour, IWatcher
         LookThirdPerson();
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (_calcLookByCam) CalcForwardByCamera();
         else CalcViewByVector();
@@ -45,7 +46,7 @@ public class CharackerView : MonoBehaviour, IWatcher
 
     private void CalcViewByVector()
     {
-        LookDirection = Quaternion.EulerAngles(0, _lookMove.x * _speedRotation, 0) * LookDirection;
+        LookDirection = Quaternion.Euler(0, _lookMove.x * _speedRotation, 0) * LookDirection;
     }
 
     private void CalcForwardByCamera()
