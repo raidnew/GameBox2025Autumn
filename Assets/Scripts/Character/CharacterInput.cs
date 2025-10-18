@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class InputManager : MonoBehaviour
 {
@@ -10,9 +12,11 @@ public class InputManager : MonoBehaviour
 
     private List<IMover> _movedCharacter;
     private List<IJumper> _jumpedCharacter;
+    private List<IWatcher> _watchedCharacter;
 
     private CharacterControl _inputAction;
     private Vector2 _moveVector = Vector2.zero;
+    private Vector2 _lookVector = Vector2.zero;
     private bool _jump = false;
 
     private void Awake()
@@ -20,6 +24,7 @@ public class InputManager : MonoBehaviour
         _inputAction = new CharacterControl();
         _movedCharacter = controlledCharacter.GetComponents<IMover>().ToList();
         _jumpedCharacter = controlledCharacter.GetComponents<IJumper>().ToList();
+        _watchedCharacter = controlledCharacter.GetComponents<IWatcher>().ToList();
     }
 
     private void OnEnable()
@@ -27,7 +32,7 @@ public class InputManager : MonoBehaviour
         _inputAction.Enable();
         _inputAction.Character.Movement.performed += OnMovementPerformed;
         _inputAction.Character.Movement.canceled += OnMovementCancelled;
-
+        _inputAction.Character.Targeting.performed += OnTargetingPerformed;
         _inputAction.Character.Jump.started += OnJumpStarted;
     }
 
@@ -36,19 +41,18 @@ public class InputManager : MonoBehaviour
         _inputAction.Disable();
         _inputAction.Character.Movement.performed -= OnMovementPerformed;
         _inputAction.Character.Movement.canceled -= OnMovementCancelled;
-
+        _inputAction.Character.Targeting.performed -= OnTargetingPerformed;
         _inputAction.Character.Jump.started -= OnJumpStarted;
     }
 
     private void Update()
     {
-        foreach (IMover item in _movedCharacter)
-            item.Move(_moveVector);
+        _movedCharacter.ForEach(item => item.Move(_moveVector));
+        _watchedCharacter.ForEach(item => item.Look(_lookVector));
 
         if (_jump)
         {
-            foreach (IJumper item in _jumpedCharacter)
-                item.Jump();
+            _jumpedCharacter.ForEach(item => item.Jump());
             _jump = false;
         }
     }
@@ -63,8 +67,14 @@ public class InputManager : MonoBehaviour
         _moveVector = Vector2.zero;
     }
 
+    private void OnTargetingPerformed(InputAction.CallbackContext value)
+    {
+        _lookVector = value.ReadValue<Vector2>();
+    }
+
     private void OnJumpStarted(InputAction.CallbackContext value)
     {
         _jump = value.ReadValue<float>() > 0;
     }
+
 }

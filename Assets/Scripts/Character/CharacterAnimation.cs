@@ -16,6 +16,11 @@ public class CharacterAnimation : MonoBehaviour, IMover
         _animator.SetInteger("movex", FloatToInt(direction.y));
     }
 
+    public void Look(Vector2 direction)
+    {
+
+    }
+
     private void Awake()
     {
         if(_jumperCharacter.TryGetComponent<IJumper>(out _jumper))

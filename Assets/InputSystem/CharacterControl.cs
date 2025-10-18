@@ -109,6 +109,15 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Targeting"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""eba014ee-3c68-4687-8729-f33d734465b0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -177,6 +186,17 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d99b374-21a7-4995-94ec-e856597d0965"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Targeting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -187,6 +207,7 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
         m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
+        m_Character_Targeting = m_Character.FindAction("Targeting", throwIfNotFound: true);
     }
 
     ~@CharacterControl()
@@ -269,6 +290,7 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
     private List<ICharacterActions> m_CharacterActionsCallbackInterfaces = new List<ICharacterActions>();
     private readonly InputAction m_Character_Movement;
     private readonly InputAction m_Character_Jump;
+    private readonly InputAction m_Character_Targeting;
     /// <summary>
     /// Provides access to input actions defined in input action map "Character".
     /// </summary>
@@ -288,6 +310,10 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Character/Jump".
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
+        /// <summary>
+        /// Provides access to the underlying input action "Character/Targeting".
+        /// </summary>
+        public InputAction @Targeting => m_Wrapper.m_Character_Targeting;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -320,6 +346,9 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Targeting.started += instance.OnTargeting;
+            @Targeting.performed += instance.OnTargeting;
+            @Targeting.canceled += instance.OnTargeting;
         }
 
         /// <summary>
@@ -337,6 +366,9 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Targeting.started -= instance.OnTargeting;
+            @Targeting.performed -= instance.OnTargeting;
+            @Targeting.canceled -= instance.OnTargeting;
         }
 
         /// <summary>
@@ -391,5 +423,12 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Targeting" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTargeting(InputAction.CallbackContext context);
     }
 }
