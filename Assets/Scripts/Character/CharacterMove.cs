@@ -26,7 +26,7 @@ public class CharacterMove : MonoBehaviour, IMover, IJumper
 
     public void Move(Vector2 direction)
     {
-        Vector3 velocityVector = transform.forward * direction.y + transform.right * direction.x;
+        Vector3 velocityVector = _watcherObject.transform.forward * direction.y + _watcherObject.transform.right * direction.x;
         if (!IsOnGround) velocityVector = velocityVector * 0.025f; //Low speed in air
         _characterRb.velocity = new Vector3(velocityVector.x, _characterRb.velocity.y, velocityVector.z);
     }
@@ -40,7 +40,7 @@ public class CharacterMove : MonoBehaviour, IMover, IJumper
     {
         Vector3 moveDiretion = new Vector3(_watcher.LookDirection.x, 0, _watcher.LookDirection.z);
         moveDiretion.Normalize();
-        transform.forward = moveDiretion;
+        _watcherObject.transform.forward = moveDiretion;
         Debug.DrawRay(transform.position, moveDiretion, Color.green, 0.2f);
     }
 

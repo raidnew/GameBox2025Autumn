@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 
-public class CharackerView : MonoBehaviour, IWatcher
+public class CharacterView : MonoBehaviour, IWatcher
 {
     [SerializeField] private CinemachineVirtualCameraBase _thirdPersonCamera;
     [SerializeField] private CinemachineVirtualCameraBase _firstPersonCamera;

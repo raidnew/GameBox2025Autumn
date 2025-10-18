@@ -6,9 +6,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
 
-public class InputManager : MonoBehaviour
+public class CharacterInput : MonoBehaviour
 {
     [SerializeField] GameObject controlledCharacter;
+    [SerializeField] GameObject watchedCharacter;
 
     private List<IMover> _movedCharacter;
     private List<IJumper> _jumpedCharacter;
@@ -25,7 +26,7 @@ public class InputManager : MonoBehaviour
         _inputAction = new CharacterControl();
         _movedCharacter = controlledCharacter.GetComponents<IMover>().ToList();
         _jumpedCharacter = controlledCharacter.GetComponents<IJumper>().ToList();
-        _watchedCharacter = controlledCharacter.GetComponents<IWatcher>().ToList();
+        _watchedCharacter = watchedCharacter.GetComponents<IWatcher>().ToList();
     }
 
     private void OnEnable()
