@@ -23,17 +23,19 @@ public class CharacterView : MonoBehaviour, IWatcher
 
     public void LookFirstPerson()
     {
+        if (_currentCamera == _firstPersonCamera) return;
         SetCurrentCamera(_firstPersonCamera);
         _calcLookByCam = false;
     }
 
     public void LookThirdPerson()
     {
+        if (_currentCamera == _thirdPersonCamera) return;
         SetCurrentCamera(_thirdPersonCamera);
         _calcLookByCam = true;
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         LookThirdPerson();
     }

@@ -60,7 +60,7 @@ public class CharacterInput : MonoBehaviour
             watcher.Look(_lookVector);
             if (_isFirstPersonView)
                 watcher.LookFirstPerson();
-            else
+            else 
                 watcher.LookThirdPerson();
         }
 
