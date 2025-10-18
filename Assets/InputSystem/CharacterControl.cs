@@ -118,6 +118,15 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchView"",
+                    ""type"": ""Button"",
+                    ""id"": ""c9d80f08-4df5-4151-a154-a9e63787bbe4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -197,6 +206,17 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""action"": ""Targeting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9506c41-8e5d-4dd2-ace3-eac156df08ab"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +228,7 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_Targeting = m_Character.FindAction("Targeting", throwIfNotFound: true);
+        m_Character_SwitchView = m_Character.FindAction("SwitchView", throwIfNotFound: true);
     }
 
     ~@CharacterControl()
@@ -291,6 +312,7 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Movement;
     private readonly InputAction m_Character_Jump;
     private readonly InputAction m_Character_Targeting;
+    private readonly InputAction m_Character_SwitchView;
     /// <summary>
     /// Provides access to input actions defined in input action map "Character".
     /// </summary>
@@ -314,6 +336,10 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Character/Targeting".
         /// </summary>
         public InputAction @Targeting => m_Wrapper.m_Character_Targeting;
+        /// <summary>
+        /// Provides access to the underlying input action "Character/SwitchView".
+        /// </summary>
+        public InputAction @SwitchView => m_Wrapper.m_Character_SwitchView;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -349,6 +375,9 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @Targeting.started += instance.OnTargeting;
             @Targeting.performed += instance.OnTargeting;
             @Targeting.canceled += instance.OnTargeting;
+            @SwitchView.started += instance.OnSwitchView;
+            @SwitchView.performed += instance.OnSwitchView;
+            @SwitchView.canceled += instance.OnSwitchView;
         }
 
         /// <summary>
@@ -369,6 +398,9 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @Targeting.started -= instance.OnTargeting;
             @Targeting.performed -= instance.OnTargeting;
             @Targeting.canceled -= instance.OnTargeting;
+            @SwitchView.started -= instance.OnSwitchView;
+            @SwitchView.performed -= instance.OnSwitchView;
+            @SwitchView.canceled -= instance.OnSwitchView;
         }
 
         /// <summary>
@@ -430,5 +462,12 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTargeting(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SwitchView" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchView(InputAction.CallbackContext context);
     }
 }

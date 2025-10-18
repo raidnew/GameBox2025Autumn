@@ -9,10 +9,6 @@ using UnityEngine.Rendering;
 public class CharacterMove : MonoBehaviour, IMover, IJumper
 {
     [SerializeField] private Rigidbody _characterRb;
-    /*
-    [SerializeField] private CinemachineFreeLook _thirdPersonCamera;
-    [SerializeField] private CinemachineFreeLook _firstPersonCamera;
-    */
     [SerializeField] private GameObject _watcherObject;
 
     private Vector3 _forwardVector;
@@ -45,6 +41,7 @@ public class CharacterMove : MonoBehaviour, IMover, IJumper
         Vector3 moveDiretion = new Vector3(_watcher.LookDirection.x, 0, _watcher.LookDirection.z);
         moveDiretion.Normalize();
         transform.forward = moveDiretion;
+        Debug.DrawRay(transform.position, moveDiretion, Color.green, 0.2f);
     }
 
     private void OnCollisionEnter(Collision collision)

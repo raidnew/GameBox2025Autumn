@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     private CharacterControl _inputAction;
     private Vector2 _moveVector = Vector2.zero;
     private Vector2 _lookVector = Vector2.zero;
+    private bool _isFirstPersonView = false;
     private bool _jump = false;
 
     private void Awake()
@@ -33,6 +34,8 @@ public class InputManager : MonoBehaviour
         _inputAction.Character.Movement.performed += OnMovementPerformed;
         _inputAction.Character.Movement.canceled += OnMovementCancelled;
         _inputAction.Character.Targeting.performed += OnTargetingPerformed;
+        _inputAction.Character.SwitchView.started += OnSwitchViewStarted;
+        _inputAction.Character.SwitchView.canceled += OnSwitchViewCancelled;
         _inputAction.Character.Jump.started += OnJumpStarted;
     }
 
@@ -42,13 +45,23 @@ public class InputManager : MonoBehaviour
         _inputAction.Character.Movement.performed -= OnMovementPerformed;
         _inputAction.Character.Movement.canceled -= OnMovementCancelled;
         _inputAction.Character.Targeting.performed -= OnTargetingPerformed;
+        _inputAction.Character.SwitchView.started -= OnSwitchViewStarted;
+        _inputAction.Character.SwitchView.canceled -= OnSwitchViewCancelled;
         _inputAction.Character.Jump.started -= OnJumpStarted;
     }
 
     private void Update()
     {
         _movedCharacter.ForEach(item => item.Move(_moveVector));
-        _watchedCharacter.ForEach(item => item.Look(_lookVector));
+
+        foreach (IWatcher watcher in _watchedCharacter)
+        {
+            watcher.Look(_lookVector);
+            if (_isFirstPersonView)
+                watcher.LookFirstPerson();
+            else
+                watcher.LookThirdPerson();
+        }
 
         if (_jump)
         {
@@ -70,6 +83,16 @@ public class InputManager : MonoBehaviour
     private void OnTargetingPerformed(InputAction.CallbackContext value)
     {
         _lookVector = value.ReadValue<Vector2>();
+    }
+
+    private void OnSwitchViewStarted(InputAction.CallbackContext value)
+    {
+        _isFirstPersonView = value.ReadValue<float>() > 0;
+    }
+
+    private void OnSwitchViewCancelled(InputAction.CallbackContext value)
+    {
+        _isFirstPersonView = value.ReadValue<float>() > 0;
     }
 
     private void OnJumpStarted(InputAction.CallbackContext value)
