@@ -18,13 +18,16 @@ public class CharacterMove : MonoBehaviour, IMover, IJumper
 
     public void Move(Vector2 direction)
     {
-        //_forwardVector.IsUnifor
-
-        _characterRb.velocity = transform.forward * direction.y + transform.right * direction.x;
-        //_characterRb.velocity = new Vector3(direction.x * 5f, _characterRb.velocity.y, direction.y * 5f);
+        Vector3 velocityVector = transform.forward * direction.y + transform.right * direction.x;
+        _characterRb.velocity = new Vector3(velocityVector.x, _characterRb.velocity.y, velocityVector.z);
     }
 
     private void FixedUpdate()
+    {
+        CalcForward();
+    }
+
+    private void CalcForward()
     {
         _forwardVector = transform.position - _camera.transform.position;
         _forwardVector.y = 0;
