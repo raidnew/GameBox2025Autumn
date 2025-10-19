@@ -32,7 +32,7 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
         _currentGunObject = Instantiate(item, _rightHandConnector, false);
         if(_currentGunObject.TryGetComponent<IGun>(out _currentGun))
         {
-            _currentGun.Shot();
+            _currentGun.TriggerOn();
             Armed?.Invoke();
         }
     }
@@ -40,20 +40,24 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
     private void OnEnable()
     {
         _input.GunTriggerPress += Shoot;
+        _input.GunTriggerRelease += StopShoot;
     }
 
     private void OnDisable()
     {
         _input.GunTriggerPress -= Shoot;
+        _input.GunTriggerRelease -= StopShoot;
     }
 
     private void Shoot()
     {
         if (_currentGun == null) return;
-        _currentGun.Shot();
+        _currentGun.TriggerOn();
+    }
 
-
-
-        
+    private void StopShoot()
+    {
+        if (_currentGun == null) return;
+        _currentGun.TriggerOff();
     }
 }

@@ -4,5 +4,6 @@ public interface IGun
 {
     Vector3 Muzzle { get; }
 
-    void Shot();
+    void TriggerOn();
+    void TriggerOff();
 }

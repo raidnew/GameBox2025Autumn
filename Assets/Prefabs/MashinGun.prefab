@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4148311897658458785}
-  - component: {fileID: -5673682187790077399}
+  - component: {fileID: 2857401255058206194}
   m_Layer: 0
   m_Name: MashinGun
   m_TagString: Untagged
@@ -67,7 +67,7 @@ Transform:
   - {fileID: 97430088533167153}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5673682187790077399
+--- !u!114 &2857401255058206194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,11 +76,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7445926674234748078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6951dd567582da48aad4ae9118001b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 300c537488dc8864cbbf23f4cd7067b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _muzzle: {fileID: 7219799053568253228}
   _shotEffect: {fileID: 4497740425141531326}
+  _delayBeetweenShots: 0.2
 --- !u!1 &9025025589669753455
 GameObject:
   m_ObjectHideFlags: 0
