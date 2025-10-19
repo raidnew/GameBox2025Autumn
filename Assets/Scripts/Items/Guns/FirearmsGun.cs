@@ -8,8 +8,6 @@ public class FirearmsGun : BaseGun
     [SerializeField] private ParticleSystem _shotEffect;
     [SerializeField] private float _damageValue;
 
-    public float DamageValue { get; set; }
-
     private void Awake()
     {
         DamageValue = _damageValue;
@@ -23,18 +21,14 @@ public class FirearmsGun : BaseGun
     protected void Hammer()
     {
         _shotEffect.Play();
-        RaycastHit viewhit, shothit;
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        if (Physics.Raycast(ray, out viewhit))
+        RaycastHit shothit;
+
+        if(GetShotDirection(out shothit))
         {
-            Ray shootRay = new Ray(Muzzle, viewhit.point - Muzzle);
-            if (Physics.Raycast(shootRay, out shothit))
-            {
-                BulletHit?.Invoke(shothit);
-                IDestroyed hittedObject;
-                if(shothit.collider.TryGetComponent<IDestroyed>(out hittedObject))
-                    hittedObject.Damage(DamageValue);
-            }
+            BulletHit?.Invoke(shothit);
+            IDestroyed hittedObject;
+            if (shothit.collider.TryGetComponent<IDestroyed>(out hittedObject))
+                hittedObject.Damage(DamageValue);
         }
     }
 }

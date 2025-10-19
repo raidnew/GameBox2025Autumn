@@ -1,11 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.Rendering.DebugUI;
-using static UnityEngine.Timeline.AnimationPlayableAsset;
 
 public class CharacterInput : MonoBehaviour
 {
@@ -16,6 +11,7 @@ public class CharacterInput : MonoBehaviour
     public Action<ViewType> SwitchView;
     public Action GunTriggerPress;
     public Action GunTriggerRelease;
+    public Action BeginGrenadeThrow;
 
     private CharacterControl _inputAction;
 
@@ -35,6 +31,7 @@ public class CharacterInput : MonoBehaviour
         _inputAction.Character.Shoting.started += OnShootStarted;
         _inputAction.Character.Shoting.canceled += OnShootCancelled;
         _inputAction.Character.Jump.started += OnJumpStarted;
+        _inputAction.Character.Grenade.started += OnGrenadeThrow;
     }
 
     private void OnDisable()
@@ -48,6 +45,7 @@ public class CharacterInput : MonoBehaviour
         _inputAction.Character.Shoting.started -= OnShootStarted;
         _inputAction.Character.Shoting.canceled -= OnShootCancelled;
         _inputAction.Character.Jump.started -= OnJumpStarted;
+        _inputAction.Character.Grenade.started -= OnGrenadeThrow;
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext value)
@@ -85,4 +83,8 @@ public class CharacterInput : MonoBehaviour
         GunTriggerRelease?.Invoke();
     }
 
+    private void OnGrenadeThrow(InputAction.CallbackContext value)
+    {
+        BeginGrenadeThrow?.Invoke();
+    }
 }

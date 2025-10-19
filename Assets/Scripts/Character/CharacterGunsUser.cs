@@ -7,14 +7,20 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
 {
     public Action Armed;
     public Action DisArmed;
+    public Action BeginGrenadeThrow;
 
     [SerializeField] private CharacterInput _input;
+    [SerializeField] private CharacterAnimation _animation;
     [SerializeField] private Transform _rightHandConnector;
+    [SerializeField] private GrenadeLauncher _grenadeLauncher;
+
     private IGun _currentGun;
     private GameObject _currentGunObject;
+    private GameObject _currentItem;
 
     public void Get(IItem item)
     {
+        HideCurrentGun();
         GetToRightHand(item.ItemModel);
     }
 
@@ -28,7 +34,7 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
 
     private void GetToRightHand(GameObject item)
     {
-        HideCurrentGun();
+        _currentItem = item;
         _currentGunObject = Instantiate(item, _rightHandConnector, false);
         if(_currentGunObject.TryGetComponent<IGun>(out _currentGun))
             Armed?.Invoke();
@@ -38,12 +44,18 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
     {
         _input.GunTriggerPress += Shoot;
         _input.GunTriggerRelease += StopShoot;
+        _input.BeginGrenadeThrow += OnBeginGrenadeThrow;
+        _animation.GrenadeIsThrowing += GrenadeThrow;
+        _animation.GrenadeHasThrowed += OnEndGrenadeThrow;
     }
 
     private void OnDisable()
     {
         _input.GunTriggerPress -= Shoot;
         _input.GunTriggerRelease -= StopShoot;
+        _input.BeginGrenadeThrow -= OnBeginGrenadeThrow;
+        _animation.GrenadeIsThrowing -= GrenadeThrow;
+        _animation.GrenadeHasThrowed -= OnEndGrenadeThrow;
     }
 
     private void Shoot()
@@ -56,5 +68,21 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
     {
         if (_currentGun == null) return;
         _currentGun.TriggerOff();
+    }
+
+    private void OnBeginGrenadeThrow()
+    {
+        HideCurrentGun();
+        BeginGrenadeThrow?.Invoke();
+    }
+
+    private void GrenadeThrow()
+    {
+        _grenadeLauncher.Launch();
+    }
+
+    private void OnEndGrenadeThrow()
+    {
+        GetToRightHand(_currentItem);
     }
 }

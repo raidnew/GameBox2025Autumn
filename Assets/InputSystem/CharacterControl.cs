@@ -159,10 +159,19 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""name"": ""Inventory"",
                     ""type"": ""Value"",
                     ""id"": ""701de093-5920-4734-be04-0316e95704d0"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Integer"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Grenade"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1e4ec1d-5784-4268-adb6-0d15c3784d92"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -308,6 +317,17 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3196e4d-3da4-4486-96bd-e5057c45084a"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grenade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -324,6 +344,7 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         m_Character_Using = m_Character.FindAction("Using", throwIfNotFound: true);
         m_Character_NextInventory = m_Character.FindAction("NextInventory", throwIfNotFound: true);
         m_Character_Inventory = m_Character.FindAction("Inventory", throwIfNotFound: true);
+        m_Character_Grenade = m_Character.FindAction("Grenade", throwIfNotFound: true);
     }
 
     ~@CharacterControl()
@@ -412,6 +433,7 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Using;
     private readonly InputAction m_Character_NextInventory;
     private readonly InputAction m_Character_Inventory;
+    private readonly InputAction m_Character_Grenade;
     /// <summary>
     /// Provides access to input actions defined in input action map "Character".
     /// </summary>
@@ -455,6 +477,10 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Character/Inventory".
         /// </summary>
         public InputAction @Inventory => m_Wrapper.m_Character_Inventory;
+        /// <summary>
+        /// Provides access to the underlying input action "Character/Grenade".
+        /// </summary>
+        public InputAction @Grenade => m_Wrapper.m_Character_Grenade;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -505,6 +531,9 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
+            @Grenade.started += instance.OnGrenade;
+            @Grenade.performed += instance.OnGrenade;
+            @Grenade.canceled += instance.OnGrenade;
         }
 
         /// <summary>
@@ -540,6 +569,9 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
+            @Grenade.started -= instance.OnGrenade;
+            @Grenade.performed -= instance.OnGrenade;
+            @Grenade.canceled -= instance.OnGrenade;
         }
 
         /// <summary>
@@ -636,5 +668,12 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInventory(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Grenade" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGrenade(InputAction.CallbackContext context);
     }
 }

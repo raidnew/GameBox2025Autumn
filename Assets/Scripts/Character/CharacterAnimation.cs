@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
+    public Action GrenadeIsThrowing;
+    public Action GrenadeHasThrowed;
+
     [SerializeField] Animator _animator;
     [SerializeField] CharacterMove _character;
     [SerializeField] CharacterGunsUser _characterGunsUser;
@@ -17,6 +20,7 @@ public class CharacterAnimation : MonoBehaviour
         _character.GetLanded += OnLanded;
         _characterGunsUser.Armed += OnArmed;
         _characterGunsUser.DisArmed += OnDisArmed;
+        _characterGunsUser.BeginGrenadeThrow += OnBeginGrenadeThrow;
     }
 
     private void OnDisable()
@@ -26,6 +30,7 @@ public class CharacterAnimation : MonoBehaviour
         _character.GetLanded -= OnLanded;
         _characterGunsUser.Armed -= OnArmed;
         _characterGunsUser.DisArmed -= OnDisArmed;
+        _characterGunsUser.BeginGrenadeThrow -= OnBeginGrenadeThrow;
     }
 
     private void OnMove(Vector2 direction)
@@ -52,6 +57,22 @@ public class CharacterAnimation : MonoBehaviour
     private void OnDisArmed()
     {
         _animator.SetBool("HasGun", false);
+    }
+
+    private void OnBeginGrenadeThrow()
+    {
+        _animator.SetBool("GrenadeLaunch", true);
+    }
+
+    private void OnGrenadeThrow()
+    {
+        GrenadeIsThrowing?.Invoke();
+    }
+
+    private void OnGrenadeThrowed()
+    {
+        _animator.SetBool("GrenadeLaunch", false);
+        GrenadeHasThrowed?.Invoke();
     }
 
     private int FloatToInt(float value)
