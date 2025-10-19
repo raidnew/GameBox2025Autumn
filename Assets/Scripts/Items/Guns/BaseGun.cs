@@ -38,7 +38,6 @@ public class BaseGun : MonoBehaviour, IGun
             if (Physics.Raycast(shootRay, out shothit))
             {
                 BulletHit?.Invoke(shothit);
-
                 IDestroyed hittedObject;
                 if(shothit.collider.TryGetComponent<IDestroyed>(out hittedObject))
                     hittedObject.Damage(DamageValue);

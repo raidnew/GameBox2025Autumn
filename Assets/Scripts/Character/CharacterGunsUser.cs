@@ -31,10 +31,7 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
         HideCurrentGun();
         _currentGunObject = Instantiate(item, _rightHandConnector, false);
         if(_currentGunObject.TryGetComponent<IGun>(out _currentGun))
-        {
-            _currentGun.TriggerOn();
             Armed?.Invoke();
-        }
     }
 
     private void OnEnable()
