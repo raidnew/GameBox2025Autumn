@@ -20,8 +20,11 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
 
     public void Get(IItem item)
     {
-        HideCurrentGun();
-        GetToRightHand(item.ItemModel);
+        if (item.IsGun)
+        {
+            HideCurrentGun();
+            GetToRightHand(item.ItemModel);
+        }
     }
 
     private void HideCurrentGun()
