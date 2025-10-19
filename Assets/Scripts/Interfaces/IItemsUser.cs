@@ -1,4 +1,4 @@
-public interface IItemUser
+public interface IItemsUser
 {
     void Get(IItem item);
 }

@@ -5,28 +5,23 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
+using static UnityEngine.Timeline.AnimationPlayableAsset;
 
 public class CharacterInput : MonoBehaviour
 {
-    [SerializeField] GameObject controlledCharacter;
-    [SerializeField] GameObject watchedCharacter;
 
-    private List<IMover> _movedCharacter;
-    private List<IJumper> _jumpedCharacter;
-    private List<IWatcher> _watchedCharacter;
+    public Action<Vector2> Move;
+    public Action<Vector2> LookMove;
+    public Action Jump;
+    public Action<ViewType> SwitchView;
+    public Action GunTriggerPress;
+    public Action GunTriggerRelease;
 
     private CharacterControl _inputAction;
-    private Vector2 _moveVector = Vector2.zero;
-    private Vector2 _lookVector = Vector2.zero;
-    private bool _isFirstPersonView = false;
-    private bool _jump = false;
 
     private void Awake()
     {
         _inputAction = new CharacterControl();
-        _movedCharacter = controlledCharacter.GetComponents<IMover>().ToList();
-        _jumpedCharacter = controlledCharacter.GetComponents<IJumper>().ToList();
-        _watchedCharacter = watchedCharacter.GetComponents<IWatcher>().ToList();
     }
 
     private void OnEnable()
@@ -35,8 +30,10 @@ public class CharacterInput : MonoBehaviour
         _inputAction.Character.Movement.performed += OnMovementPerformed;
         _inputAction.Character.Movement.canceled += OnMovementCancelled;
         _inputAction.Character.Targeting.performed += OnTargetingPerformed;
-        _inputAction.Character.SwitchView.started += OnSwitchViewStarted;
-        _inputAction.Character.SwitchView.canceled += OnSwitchViewCancelled;
+        _inputAction.Character.SwitchView.started += OnSwitchViewAction;
+        _inputAction.Character.SwitchView.canceled += OnSwitchViewAction;
+        _inputAction.Character.Shoting.started += OnShootStarted;
+        _inputAction.Character.Shoting.canceled += OnShootCancelled;
         _inputAction.Character.Jump.started += OnJumpStarted;
     }
 
@@ -46,59 +43,46 @@ public class CharacterInput : MonoBehaviour
         _inputAction.Character.Movement.performed -= OnMovementPerformed;
         _inputAction.Character.Movement.canceled -= OnMovementCancelled;
         _inputAction.Character.Targeting.performed -= OnTargetingPerformed;
-        _inputAction.Character.SwitchView.started -= OnSwitchViewStarted;
-        _inputAction.Character.SwitchView.canceled -= OnSwitchViewCancelled;
+        _inputAction.Character.SwitchView.started -= OnSwitchViewAction;
+        _inputAction.Character.SwitchView.canceled -= OnSwitchViewAction;
+        _inputAction.Character.Shoting.started -= OnShootStarted;
+        _inputAction.Character.Shoting.canceled -= OnShootCancelled;
         _inputAction.Character.Jump.started -= OnJumpStarted;
-    }
-
-    private void Update()
-    {
-        _movedCharacter.ForEach(item => item.Move(_moveVector));
-
-        foreach (IWatcher watcher in _watchedCharacter)
-        {
-            watcher.Look(_lookVector);
-            if (_isFirstPersonView)
-                watcher.LookFirstPerson();
-            else 
-                watcher.LookThirdPerson();
-        }
-
-        if (_jump)
-        {
-            _jumpedCharacter.ForEach(item => item.Jump());
-            _jump = false;
-        }
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext value)
     {
-        _moveVector = value.ReadValue<Vector2>();
+        Move?.Invoke(value.ReadValue<Vector2>());
     }
 
     private void OnMovementCancelled(InputAction.CallbackContext value)
     {
-        _moveVector = Vector2.zero;
+        Move?.Invoke(Vector2.zero);
     }
 
     private void OnTargetingPerformed(InputAction.CallbackContext value)
     {
-        _lookVector = value.ReadValue<Vector2>();
+        LookMove?.Invoke(value.ReadValue<Vector2>());
     }
 
-    private void OnSwitchViewStarted(InputAction.CallbackContext value)
+    private void OnSwitchViewAction(InputAction.CallbackContext value)
     {
-        _isFirstPersonView = value.ReadValue<float>() > 0;
-    }
-
-    private void OnSwitchViewCancelled(InputAction.CallbackContext value)
-    {
-        _isFirstPersonView = value.ReadValue<float>() > 0;
+        SwitchView?.Invoke(value.ReadValue<float>() > 0 ? ViewType.First : ViewType.Third );
     }
 
     private void OnJumpStarted(InputAction.CallbackContext value)
     {
-        _jump = value.ReadValue<float>() > 0;
+        Jump?.Invoke();
+    }
+
+    private void OnShootStarted(InputAction.CallbackContext value)
+    {
+        GunTriggerPress?.Invoke();
+    }
+
+    private void OnShootCancelled(InputAction.CallbackContext value)
+    {
+        GunTriggerRelease?.Invoke();
     }
 
 }

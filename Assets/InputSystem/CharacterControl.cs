@@ -127,6 +127,33 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoting"",
+                    ""type"": ""Button"",
+                    ""id"": ""52e82864-b8b4-41af-882a-4a3ec27bc797"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Using"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca883de1-25d1-4e4c-9b6e-4ea5ee7c9dad"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""22d5b1d4-6b1c-4166-8ba1-13f48e6387e4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -217,6 +244,39 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchView"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f455e49e-7144-455f-a29a-87a90d2290e0"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20d507ef-4226-42a6-819a-0bf24b931443"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Using"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e0a1bde-c98a-42e1-ac5b-fc7fda87779b"",
+                    ""path"": ""<Keyboard>/period"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -229,6 +289,9 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_Targeting = m_Character.FindAction("Targeting", throwIfNotFound: true);
         m_Character_SwitchView = m_Character.FindAction("SwitchView", throwIfNotFound: true);
+        m_Character_Shoting = m_Character.FindAction("Shoting", throwIfNotFound: true);
+        m_Character_Using = m_Character.FindAction("Using", throwIfNotFound: true);
+        m_Character_NextInventory = m_Character.FindAction("NextInventory", throwIfNotFound: true);
     }
 
     ~@CharacterControl()
@@ -313,6 +376,9 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Jump;
     private readonly InputAction m_Character_Targeting;
     private readonly InputAction m_Character_SwitchView;
+    private readonly InputAction m_Character_Shoting;
+    private readonly InputAction m_Character_Using;
+    private readonly InputAction m_Character_NextInventory;
     /// <summary>
     /// Provides access to input actions defined in input action map "Character".
     /// </summary>
@@ -340,6 +406,18 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Character/SwitchView".
         /// </summary>
         public InputAction @SwitchView => m_Wrapper.m_Character_SwitchView;
+        /// <summary>
+        /// Provides access to the underlying input action "Character/Shoting".
+        /// </summary>
+        public InputAction @Shoting => m_Wrapper.m_Character_Shoting;
+        /// <summary>
+        /// Provides access to the underlying input action "Character/Using".
+        /// </summary>
+        public InputAction @Using => m_Wrapper.m_Character_Using;
+        /// <summary>
+        /// Provides access to the underlying input action "Character/NextInventory".
+        /// </summary>
+        public InputAction @NextInventory => m_Wrapper.m_Character_NextInventory;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -378,6 +456,15 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @SwitchView.started += instance.OnSwitchView;
             @SwitchView.performed += instance.OnSwitchView;
             @SwitchView.canceled += instance.OnSwitchView;
+            @Shoting.started += instance.OnShoting;
+            @Shoting.performed += instance.OnShoting;
+            @Shoting.canceled += instance.OnShoting;
+            @Using.started += instance.OnUsing;
+            @Using.performed += instance.OnUsing;
+            @Using.canceled += instance.OnUsing;
+            @NextInventory.started += instance.OnNextInventory;
+            @NextInventory.performed += instance.OnNextInventory;
+            @NextInventory.canceled += instance.OnNextInventory;
         }
 
         /// <summary>
@@ -401,6 +488,15 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @SwitchView.started -= instance.OnSwitchView;
             @SwitchView.performed -= instance.OnSwitchView;
             @SwitchView.canceled -= instance.OnSwitchView;
+            @Shoting.started -= instance.OnShoting;
+            @Shoting.performed -= instance.OnShoting;
+            @Shoting.canceled -= instance.OnShoting;
+            @Using.started -= instance.OnUsing;
+            @Using.performed -= instance.OnUsing;
+            @Using.canceled -= instance.OnUsing;
+            @NextInventory.started -= instance.OnNextInventory;
+            @NextInventory.performed -= instance.OnNextInventory;
+            @NextInventory.canceled -= instance.OnNextInventory;
         }
 
         /// <summary>
@@ -469,5 +565,26 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSwitchView(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Shoting" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShoting(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Using" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnUsing(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NextInventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNextInventory(InputAction.CallbackContext context);
     }
 }

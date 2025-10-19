@@ -15,8 +15,8 @@ public class ItemContainer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IItemUser itemUser;
-        if(other.TryGetComponent<IItemUser>(out itemUser))
+        IItemsUser itemUser;
+        if(other.TryGetComponent<IItemsUser>(out itemUser))
         {
             itemUser.Get(item);
         }

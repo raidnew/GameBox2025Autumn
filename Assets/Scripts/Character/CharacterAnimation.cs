@@ -1,35 +1,34 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class CharacterAnimation : MonoBehaviour, IMover
+public class CharacterAnimation : MonoBehaviour
 {
     [SerializeField] Animator _animator;
-    [SerializeField] GameObject _jumperCharacter;
+    [SerializeField] CharacterMove _character;
 
-    private IJumper _jumper;
+    private void OnEnable()
+    {
+        _character.Move += OnMove;
+        _character.LeaveGround += OnJump;
+        _character.GetLanded += OnLanded;
+    }
 
-    public void Move(Vector2 direction)
+    private void OnDisable()
+    {
+        _character.Move -= OnMove;
+        _character.LeaveGround -= OnJump;
+        _character.GetLanded -= OnLanded;
+    }
+
+    private void OnMove(Vector2 direction)
     {
         _animator.SetInteger("movez", FloatToInt(direction.x));
         _animator.SetInteger("movex", FloatToInt(direction.y));
     }
-
-    public void Look(Vector2 direction)
-    {
-
-    }
-
-    private void Awake()
-    {
-        if(_jumperCharacter.TryGetComponent<IJumper>(out _jumper))
-        {
-            _jumper.LeaveGround += OnJump;
-            _jumper.GetLanded += OnLanded;
-        }
-    }
-
+    
     private void OnJump()
     {
         _animator.SetBool("isJumping", true);

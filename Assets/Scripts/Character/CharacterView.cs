@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.Controls;
 
 public class CharacterView : MonoBehaviour, IWatcher
 {
+    [SerializeField] private CharacterInput _input;
     [SerializeField] private CinemachineVirtualCameraBase _thirdPersonCamera;
     [SerializeField] private CinemachineVirtualCameraBase _firstPersonCamera;
     [SerializeField] private float _speedRotation = 0.01f;
@@ -16,34 +17,54 @@ public class CharacterView : MonoBehaviour, IWatcher
 
     public Vector3 LookDirection { get; set; }
 
-    public void Look(Vector2 direction)
-    {
-        _lookMove = direction;
-    }
-
-    public void LookFirstPerson()
-    {
-        if (_currentCamera == _firstPersonCamera) return;
-        SetCurrentCamera(_firstPersonCamera);
-        _calcLookByCam = false;
-    }
-
-    public void LookThirdPerson()
-    {
-        if (_currentCamera == _thirdPersonCamera) return;
-        SetCurrentCamera(_thirdPersonCamera);
-        _calcLookByCam = true;
-    }
-
     private void OnEnable()
     {
         LookThirdPerson();
+        _input.SwitchView += OnSwitchView;
+        _input.LookMove += OnLook;
+    }
+
+    private void OnDisable()
+    {
+        _input.SwitchView -= OnSwitchView;
+        _input.LookMove -= OnLook;
     }
 
     private void FixedUpdate()
     {
         if (_calcLookByCam) CalcForwardByCamera();
         else CalcViewByVector();
+    }
+
+    private void OnSwitchView(ViewType type)
+    {
+        switch (type)
+        {
+            case ViewType.First:
+                LookFirstPerson();
+                break;
+            case ViewType.Third:
+                LookThirdPerson();
+                break;
+        }
+    }
+
+    private void LookFirstPerson()
+    {
+        if (_currentCamera == _firstPersonCamera) return;
+        SetCurrentCamera(_firstPersonCamera);
+        _calcLookByCam = false;
+    }
+
+    private void LookThirdPerson()
+    {
+        if (_currentCamera == _thirdPersonCamera) return;
+        SetCurrentCamera(_thirdPersonCamera);
+        _calcLookByCam = true;
+    }
+    private void OnLook(Vector2 direction)
+    {
+        _lookMove = direction;
     }
 
     private void CalcViewByVector()
