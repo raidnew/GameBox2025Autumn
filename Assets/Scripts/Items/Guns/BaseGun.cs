@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BaseGun : MonoBehaviour, IGun
 {
-    [SerializeField] private Transform _muzzle;
-    public Vector3 Muzzle => _muzzle.position;
+
+    public Vector3 Muzzle => Vector3.zero;
 
     public float DamageValue { get; protected set; }
 

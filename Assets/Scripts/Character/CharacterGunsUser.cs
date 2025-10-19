@@ -34,6 +34,7 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
 
     private void GetToRightHand(GameObject item)
     {
+        if (item == null) return;
         _currentItem = item;
         _currentGunObject = Instantiate(item, _rightHandConnector, false);
         if(_currentGunObject.TryGetComponent<IGun>(out _currentGun))
