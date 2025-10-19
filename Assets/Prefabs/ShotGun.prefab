@@ -5043,6 +5043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _muzzle: {fileID: 7619138050992194886}
   _shotEffect: {fileID: 4242192853925192497}
+  _damageValue: 2
 --- !u!1001 &6238698379351025599
 PrefabInstance:
   m_ObjectHideFlags: 0

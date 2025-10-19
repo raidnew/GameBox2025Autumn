@@ -15,11 +15,13 @@ public class BulletHoleManager : MonoBehaviour
     private void OnEnable()
     {
         BaseGun.BulletHit += OnBulletHole;
+        DestoyableObject.Crush += CheckHoleOnObject;
     }
 
     private void OnDisable()
     {
         BaseGun.BulletHit -= OnBulletHole;
+        DestoyableObject.Crush -= CheckHoleOnObject;
     }
 
     private void OnBulletHole(RaycastHit hit)
@@ -35,9 +37,23 @@ public class BulletHoleManager : MonoBehaviour
 
     private GameObject NewBulletHole(RaycastHit hit)
     {
-        GameObject newBulletHole = Instantiate(_bulletHoleDecalPrefab, _bulletHoleContainer, true);
+        GameObject newBulletHole = Instantiate(_bulletHoleDecalPrefab, hit.collider.transform, true);
         newBulletHole.transform.position = hit.point;
         newBulletHole.transform.rotation = Quaternion.LookRotation(hit.normal);
         return newBulletHole;
+    }
+
+    private void CheckHoleOnObject(GameObject removedObject)
+    {
+        for (int  i = _bulletHoles.Count - 1; i >= 0; i--)
+        {
+            GameObject hole = _bulletHoles[i];
+            if (hole.transform.parent == removedObject.transform)
+            {
+                Destroy(hole);
+                _bulletHoles.RemoveAt(i);
+            }
+
+        }
     }
 }

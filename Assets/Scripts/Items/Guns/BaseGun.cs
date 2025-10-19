@@ -7,8 +7,16 @@ public class BaseGun : MonoBehaviour, IGun
 
     [SerializeField] private Transform _muzzle;
     [SerializeField] private ParticleSystem _shotEffect;
+    [SerializeField] private float _damageValue;
 
     public Vector3 Muzzle => _muzzle.position;
+
+    public float DamageValue { get; set; }
+
+    private void Awake()
+    {
+        DamageValue = _damageValue;
+    }
 
     public virtual void TriggerOff()
     {
@@ -28,7 +36,13 @@ public class BaseGun : MonoBehaviour, IGun
         {
             Ray shootRay = new Ray(Muzzle, viewhit.point - Muzzle);
             if (Physics.Raycast(shootRay, out shothit))
+            {
                 BulletHit?.Invoke(shothit);
+
+                IDestroyed hittedObject;
+                if(shothit.collider.TryGetComponent<IDestroyed>(out hittedObject))
+                    hittedObject.Damage(DamageValue);
+            }
         }
     }
 }

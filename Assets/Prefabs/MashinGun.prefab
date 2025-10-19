@@ -81,6 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _muzzle: {fileID: 7219799053568253228}
   _shotEffect: {fileID: 4497740425141531326}
+  _damageValue: 1
   _delayBeetweenShots: 0.2
 --- !u!1 &9025025589669753455
 GameObject:
