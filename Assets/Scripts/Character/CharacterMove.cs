@@ -11,6 +11,7 @@ public class CharacterMove : MonoBehaviour
     [SerializeField] private CharacterInput _input;
     [SerializeField] private Rigidbody _characterRb;
     [SerializeField] private GameObject _watcherObject;
+    [SerializeField] private float _jumpPower = 250;
 
     private bool _isMoving;
     private Vector3 _moveVector;
@@ -89,7 +90,7 @@ public class CharacterMove : MonoBehaviour
 
     private void OnJump()
     {
-        _characterRb.AddForce(Vector3.up * 200);
+        _characterRb.AddForce(Vector3.up * _jumpPower);
     }
 
     private void OnMove(Vector2 direction)
