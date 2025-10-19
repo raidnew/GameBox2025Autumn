@@ -154,6 +154,15 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Value"",
+                    ""id"": ""701de093-5920-4734-be04-0316e95704d0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -277,6 +286,28 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""action"": ""NextInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e4d3014-e3bf-4c7c-a655-01155050cc39"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ddb4352f-73ae-413f-9b41-6e6473a03e1c"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -292,6 +323,7 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         m_Character_Shoting = m_Character.FindAction("Shoting", throwIfNotFound: true);
         m_Character_Using = m_Character.FindAction("Using", throwIfNotFound: true);
         m_Character_NextInventory = m_Character.FindAction("NextInventory", throwIfNotFound: true);
+        m_Character_Inventory = m_Character.FindAction("Inventory", throwIfNotFound: true);
     }
 
     ~@CharacterControl()
@@ -379,6 +411,7 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Shoting;
     private readonly InputAction m_Character_Using;
     private readonly InputAction m_Character_NextInventory;
+    private readonly InputAction m_Character_Inventory;
     /// <summary>
     /// Provides access to input actions defined in input action map "Character".
     /// </summary>
@@ -418,6 +451,10 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Character/NextInventory".
         /// </summary>
         public InputAction @NextInventory => m_Wrapper.m_Character_NextInventory;
+        /// <summary>
+        /// Provides access to the underlying input action "Character/Inventory".
+        /// </summary>
+        public InputAction @Inventory => m_Wrapper.m_Character_Inventory;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -465,6 +502,9 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @NextInventory.started += instance.OnNextInventory;
             @NextInventory.performed += instance.OnNextInventory;
             @NextInventory.canceled += instance.OnNextInventory;
+            @Inventory.started += instance.OnInventory;
+            @Inventory.performed += instance.OnInventory;
+            @Inventory.canceled += instance.OnInventory;
         }
 
         /// <summary>
@@ -497,6 +537,9 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @NextInventory.started -= instance.OnNextInventory;
             @NextInventory.performed -= instance.OnNextInventory;
             @NextInventory.canceled -= instance.OnNextInventory;
+            @Inventory.started -= instance.OnInventory;
+            @Inventory.performed -= instance.OnInventory;
+            @Inventory.canceled -= instance.OnInventory;
         }
 
         /// <summary>
@@ -586,5 +629,12 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNextInventory(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Inventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInventory(InputAction.CallbackContext context);
     }
 }

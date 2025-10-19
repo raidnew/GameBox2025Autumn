@@ -8,12 +8,15 @@ public class CharacterAnimation : MonoBehaviour
 {
     [SerializeField] Animator _animator;
     [SerializeField] CharacterMove _character;
+    [SerializeField] CharacterGunsUser _characterGunsUser;
 
     private void OnEnable()
     {
         _character.Move += OnMove;
         _character.LeaveGround += OnJump;
         _character.GetLanded += OnLanded;
+        _characterGunsUser.Armed += OnArmed;
+        _characterGunsUser.DisArmed += OnDisArmed;
     }
 
     private void OnDisable()
@@ -21,6 +24,8 @@ public class CharacterAnimation : MonoBehaviour
         _character.Move -= OnMove;
         _character.LeaveGround -= OnJump;
         _character.GetLanded -= OnLanded;
+        _characterGunsUser.Armed -= OnArmed;
+        _characterGunsUser.DisArmed -= OnDisArmed;
     }
 
     private void OnMove(Vector2 direction)
@@ -37,6 +42,16 @@ public class CharacterAnimation : MonoBehaviour
     private void OnLanded()
     {
         _animator.SetBool("isJumping", false);
+    }
+
+    private void OnArmed()
+    {
+        _animator.SetBool("HasGun", true);
+    }
+
+    private void OnDisArmed()
+    {
+        _animator.SetBool("HasGun", false);
     }
 
     private int FloatToInt(float value)
