@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutofireGun : BaseGun
+public class AutofireGun : FirearmsGun
 {
     [SerializeField] private float _delayBeetweenShots;
 

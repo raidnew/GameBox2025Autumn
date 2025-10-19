@@ -14,13 +14,13 @@ public class BulletHoleManager : MonoBehaviour
 
     private void OnEnable()
     {
-        BaseGun.BulletHit += OnBulletHole;
+        FirearmsGun.BulletHit += OnBulletHole;
         DestoyableObject.Crush += CheckHoleOnObject;
     }
 
     private void OnDisable()
     {
-        BaseGun.BulletHit -= OnBulletHole;
+        FirearmsGun.BulletHit -= OnBulletHole;
         DestoyableObject.Crush -= CheckHoleOnObject;
     }
 

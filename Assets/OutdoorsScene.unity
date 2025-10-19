@@ -3052,6 +3052,7 @@ MonoBehaviour:
   _input: {fileID: 871010094}
   _characterRb: {fileID: 1906415349}
   _watcherObject: {fileID: 1307417929420411997}
+  _jumpPower: 250
 --- !u!114 &1906415347
 MonoBehaviour:
   m_ObjectHideFlags: 0
