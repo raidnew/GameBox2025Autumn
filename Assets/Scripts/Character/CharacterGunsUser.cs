@@ -8,8 +8,6 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
     public Action Armed;
     public Action DisArmed;
 
-    public static Action<RaycastHit> BulletHit;
-
     [SerializeField] private CharacterInput _input;
     [SerializeField] private Transform _rightHandConnector;
     private IGun _currentGun;
@@ -54,18 +52,7 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
         if (_currentGun == null) return;
         _currentGun.Shot();
 
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        RaycastHit viewhit;
-        RaycastHit shothit;
-        if (Physics.Raycast(ray, out viewhit))
-        {
-            Ray shootRay = new Ray(_currentGun.Muzzle, viewhit.point - _currentGun.Muzzle);
-            if(Physics.Raycast(shootRay, out shothit))
-            {
-                //Debug.DrawLine(_currentGun.Muzzle, shothit.point, Color.red, 2f);
-                BulletHit?.Invoke(shothit);
-            }
-        }
+
 
         
     }
