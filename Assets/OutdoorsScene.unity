@@ -3131,6 +3131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa540f47f103de4c9a466ab84b7ecd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _throwPower: 60
   _pointStart: {fileID: 1709681858}
   _grenadePrefab: {fileID: 7684852908670485262, guid: ebfd548b14f39fa4d8bbc1e94639233a,
     type: 3}

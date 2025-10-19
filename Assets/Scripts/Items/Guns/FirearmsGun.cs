@@ -7,6 +7,7 @@ public class FirearmsGun : BaseGun
 
     [SerializeField] private ParticleSystem _shotEffect;
     [SerializeField] private float _damageValue;
+    [SerializeField] private Transform _muzzle;
 
     private void Awake()
     {
@@ -30,5 +31,10 @@ public class FirearmsGun : BaseGun
             if (shothit.collider.TryGetComponent<IDestroyed>(out hittedObject))
                 hittedObject.Damage(DamageValue);
         }
+    }
+
+    public override Vector3 Muzzle()
+    {
+        return _muzzle.position;
     }
 }

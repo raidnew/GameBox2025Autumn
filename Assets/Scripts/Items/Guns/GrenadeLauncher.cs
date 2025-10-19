@@ -8,8 +8,6 @@ public class GrenadeLauncher : BaseGun, IGrenadeLauncher
     [SerializeField] private Transform _pointStart;
     [SerializeField] private GameObject _grenadePrefab;
 
-    public Vector3 Muzzle => _pointStart.position;
-
     public void Launch()
     {
         RaycastHit shothit;
@@ -25,5 +23,10 @@ public class GrenadeLauncher : BaseGun, IGrenadeLauncher
 
             Debug.DrawRay(_pointStart.position, direction, Color.red, 3f);
         }
+    }
+
+    public override Vector3 Muzzle()
+    {
+        return _pointStart.position;
     }
 }
