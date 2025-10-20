@@ -6,6 +6,7 @@ public class FirearmsGun : BaseGun
     public static Action<RaycastHit> BulletHit;
 
     [SerializeField] private ParticleSystem _shotEffect;
+    [SerializeField] private ShotSoundEffect _shotSoundEffect;
     [SerializeField] private float _damageValue;
     [SerializeField] private Transform _muzzle;
 
@@ -22,6 +23,7 @@ public class FirearmsGun : BaseGun
     protected void Hammer()
     {
         _shotEffect.Play();
+        _shotSoundEffect.Play();
         RaycastHit shothit;
 
         if(GetShotDirection(out shothit))

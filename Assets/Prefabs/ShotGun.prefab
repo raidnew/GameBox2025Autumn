@@ -4888,6 +4888,51 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &6210345806807944657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 687690052506585316}
+  - component: {fileID: 4799189988367183739}
+  m_Layer: 0
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &687690052506585316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210345806807944657}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.6746463, y: -0.3068244, z: 0.44880334, w: -0.49928623}
+  m_LocalPosition: {x: 0.507, y: -0.279, z: 0.207}
+  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1856504115587289365}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4799189988367183739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210345806807944657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a08fab746726947bc45d128ddd1eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shotSound: {fileID: 8300000, guid: b5aa71578f16e394e92a4295a9ed7210, type: 3}
 --- !u!1 &8321176972678891162
 GameObject:
   m_ObjectHideFlags: 0
@@ -4955,6 +5000,7 @@ Transform:
   - {fileID: 5845380268293652564}
   - {fileID: 7619138050992194886}
   - {fileID: 3933084266239294544}
+  - {fileID: 687690052506585316}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -23.47, y: -96.169, z: 109.961}
 --- !u!33 &267885484329787332
@@ -5041,9 +5087,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6951dd567582da48aad4ae9118001b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _muzzle: {fileID: 7619138050992194886}
   _shotEffect: {fileID: 4242192853925192497}
+  _shotSoundEffect: {fileID: 4799189988367183739}
   _damageValue: 2
+  _muzzle: {fileID: 7619138050992194886}
 --- !u!1001 &6238698379351025599
 PrefabInstance:
   m_ObjectHideFlags: 0
