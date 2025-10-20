@@ -101,7 +101,7 @@ public class CharacterMove : MonoBehaviour
     private void MoveObject()
     {
         Vector3 velocityVector = _watcherObject.transform.forward * MoveVector.y + _watcherObject.transform.right * MoveVector.x;
-        if (!IsOnGround) velocityVector = velocityVector * 0.025f; //Low speed in air
+        if (!IsOnGround) velocityVector = velocityVector * 0.25f; //Low speed in air
         _characterRb.velocity = new Vector3(velocityVector.x, _characterRb.velocity.y, velocityVector.z);
     }
 }
