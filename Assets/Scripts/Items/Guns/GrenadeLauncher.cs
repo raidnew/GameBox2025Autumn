@@ -8,6 +8,8 @@ public class GrenadeLauncher : BaseGun, IGrenadeLauncher
     [SerializeField] private Transform _pointStart;
     [SerializeField] private GameObject _grenadePrefab;
 
+    public override GunType GetGunType() => GunType.Grenade;
+
     public void Launch()
     {
         RaycastHit shothit;

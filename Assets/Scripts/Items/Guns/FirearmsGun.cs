@@ -9,6 +9,9 @@ public class FirearmsGun : BaseGun
     [SerializeField] private ShotSoundEffect _shotSoundEffect;
     [SerializeField] private float _damageValue;
     [SerializeField] private Transform _muzzle;
+    [SerializeField] private GunType _type;
+
+    public override GunType GetGunType() => _type;
 
     private void Awake()
     {
@@ -35,8 +38,5 @@ public class FirearmsGun : BaseGun
         }
     }
 
-    public override Vector3 Muzzle()
-    {
-        return _muzzle.position;
-    }
+    public override Vector3 Muzzle() => _muzzle.position;
 }

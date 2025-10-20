@@ -27,23 +27,6 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
         }
     }
 
-    private void HideCurrentGun()
-    {
-        if (_currentGunObject == null) return;
-        _currentGun = null;
-        Destroy(_currentGunObject );
-        DisArmed?.Invoke();
-    }
-
-    private void GetToRightHand(GameObject item)
-    {
-        if (item == null) return;
-        _currentItem = item;
-        _currentGunObject = Instantiate(item, _rightHandConnector, false);
-        if(_currentGunObject.TryGetComponent<IGun>(out _currentGun))
-            Armed?.Invoke();
-    }
-
     private void OnEnable()
     {
         _input.GunTriggerPress += Shoot;
@@ -60,6 +43,23 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
         _input.BeginGrenadeThrow -= OnBeginGrenadeThrow;
         _animation.GrenadeIsThrowing -= GrenadeThrow;
         _animation.GrenadeHasThrowed -= OnEndGrenadeThrow;
+    }
+
+    private void HideCurrentGun()
+    {
+        if (_currentGunObject == null) return;
+        _currentGun = null;
+        Destroy(_currentGunObject);
+        DisArmed?.Invoke();
+    }
+
+    private void GetToRightHand(GameObject item)
+    {
+        if (item == null) return;
+        _currentItem = item;
+        _currentGunObject = Instantiate(item, _rightHandConnector, false);
+        if (_currentGunObject.TryGetComponent<IGun>(out _currentGun))
+            Armed?.Invoke();
     }
 
     private void Shoot()

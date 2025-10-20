@@ -147,24 +147,6 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""NextInventory"",
-                    ""type"": ""Button"",
-                    ""id"": ""22d5b1d4-6b1c-4166-8ba1-13f48e6387e4"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Inventory"",
-                    ""type"": ""Value"",
-                    ""id"": ""701de093-5920-4734-be04-0316e95704d0"",
-                    ""expectedControlType"": ""Integer"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Grenade"",
                     ""type"": ""Button"",
                     ""id"": ""b1e4ec1d-5784-4268-adb6-0d15c3784d92"",
@@ -287,45 +269,80 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3e0a1bde-c98a-42e1-ac5b-fc7fda87779b"",
-                    ""path"": ""<Keyboard>/period"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NextInventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6e4d3014-e3bf-4c7c-a655-01155050cc39"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Inventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ddb4352f-73ae-413f-9b41-6e6473a03e1c"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Inventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c3196e4d-3da4-4486-96bd-e5057c45084a"",
                     ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Grenade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Inventory"",
+            ""id"": ""29109ec5-452e-4acd-b3b1-be0893788dd5"",
+            ""actions"": [
+                {
+                    ""name"": ""ShotGun"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d3feecf-b749-4b3d-a1aa-ce86522ca1e0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AutomaticGun"",
+                    ""type"": ""Button"",
+                    ""id"": ""43c68dc2-dafc-4bbc-9386-21e02bdc415f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""NextItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3255283-f02c-4730-b6e7-ba95da60a086"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ce4cb229-2095-47cb-816c-b8256daeb4eb"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShotGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52fdc029-3108-477f-95af-d44e07ac9e6c"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AutomaticGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45efe762-d172-4b25-896e-0c596560936d"",
+                    ""path"": ""<Keyboard>/period"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -342,14 +359,18 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         m_Character_SwitchView = m_Character.FindAction("SwitchView", throwIfNotFound: true);
         m_Character_Shoting = m_Character.FindAction("Shoting", throwIfNotFound: true);
         m_Character_Using = m_Character.FindAction("Using", throwIfNotFound: true);
-        m_Character_NextInventory = m_Character.FindAction("NextInventory", throwIfNotFound: true);
-        m_Character_Inventory = m_Character.FindAction("Inventory", throwIfNotFound: true);
         m_Character_Grenade = m_Character.FindAction("Grenade", throwIfNotFound: true);
+        // Inventory
+        m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
+        m_Inventory_ShotGun = m_Inventory.FindAction("ShotGun", throwIfNotFound: true);
+        m_Inventory_AutomaticGun = m_Inventory.FindAction("AutomaticGun", throwIfNotFound: true);
+        m_Inventory_NextItem = m_Inventory.FindAction("NextItem", throwIfNotFound: true);
     }
 
     ~@CharacterControl()
     {
         UnityEngine.Debug.Assert(!m_Character.enabled, "This will cause a leak and performance issues, CharacterControl.Character.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Inventory.enabled, "This will cause a leak and performance issues, CharacterControl.Inventory.Disable() has not been called.");
     }
 
     /// <summary>
@@ -431,8 +452,6 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_SwitchView;
     private readonly InputAction m_Character_Shoting;
     private readonly InputAction m_Character_Using;
-    private readonly InputAction m_Character_NextInventory;
-    private readonly InputAction m_Character_Inventory;
     private readonly InputAction m_Character_Grenade;
     /// <summary>
     /// Provides access to input actions defined in input action map "Character".
@@ -469,14 +488,6 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Character/Using".
         /// </summary>
         public InputAction @Using => m_Wrapper.m_Character_Using;
-        /// <summary>
-        /// Provides access to the underlying input action "Character/NextInventory".
-        /// </summary>
-        public InputAction @NextInventory => m_Wrapper.m_Character_NextInventory;
-        /// <summary>
-        /// Provides access to the underlying input action "Character/Inventory".
-        /// </summary>
-        public InputAction @Inventory => m_Wrapper.m_Character_Inventory;
         /// <summary>
         /// Provides access to the underlying input action "Character/Grenade".
         /// </summary>
@@ -525,12 +536,6 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @Using.started += instance.OnUsing;
             @Using.performed += instance.OnUsing;
             @Using.canceled += instance.OnUsing;
-            @NextInventory.started += instance.OnNextInventory;
-            @NextInventory.performed += instance.OnNextInventory;
-            @NextInventory.canceled += instance.OnNextInventory;
-            @Inventory.started += instance.OnInventory;
-            @Inventory.performed += instance.OnInventory;
-            @Inventory.canceled += instance.OnInventory;
             @Grenade.started += instance.OnGrenade;
             @Grenade.performed += instance.OnGrenade;
             @Grenade.canceled += instance.OnGrenade;
@@ -563,12 +568,6 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @Using.started -= instance.OnUsing;
             @Using.performed -= instance.OnUsing;
             @Using.canceled -= instance.OnUsing;
-            @NextInventory.started -= instance.OnNextInventory;
-            @NextInventory.performed -= instance.OnNextInventory;
-            @NextInventory.canceled -= instance.OnNextInventory;
-            @Inventory.started -= instance.OnInventory;
-            @Inventory.performed -= instance.OnInventory;
-            @Inventory.canceled -= instance.OnInventory;
             @Grenade.started -= instance.OnGrenade;
             @Grenade.performed -= instance.OnGrenade;
             @Grenade.canceled -= instance.OnGrenade;
@@ -605,6 +604,124 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="CharacterActions" /> instance referencing this action map.
     /// </summary>
     public CharacterActions @Character => new CharacterActions(this);
+
+    // Inventory
+    private readonly InputActionMap m_Inventory;
+    private List<IInventoryActions> m_InventoryActionsCallbackInterfaces = new List<IInventoryActions>();
+    private readonly InputAction m_Inventory_ShotGun;
+    private readonly InputAction m_Inventory_AutomaticGun;
+    private readonly InputAction m_Inventory_NextItem;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Inventory".
+    /// </summary>
+    public struct InventoryActions
+    {
+        private @CharacterControl m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public InventoryActions(@CharacterControl wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Inventory/ShotGun".
+        /// </summary>
+        public InputAction @ShotGun => m_Wrapper.m_Inventory_ShotGun;
+        /// <summary>
+        /// Provides access to the underlying input action "Inventory/AutomaticGun".
+        /// </summary>
+        public InputAction @AutomaticGun => m_Wrapper.m_Inventory_AutomaticGun;
+        /// <summary>
+        /// Provides access to the underlying input action "Inventory/NextItem".
+        /// </summary>
+        public InputAction @NextItem => m_Wrapper.m_Inventory_NextItem;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Inventory; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="InventoryActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(InventoryActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="InventoryActions" />
+        public void AddCallbacks(IInventoryActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InventoryActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InventoryActionsCallbackInterfaces.Add(instance);
+            @ShotGun.started += instance.OnShotGun;
+            @ShotGun.performed += instance.OnShotGun;
+            @ShotGun.canceled += instance.OnShotGun;
+            @AutomaticGun.started += instance.OnAutomaticGun;
+            @AutomaticGun.performed += instance.OnAutomaticGun;
+            @AutomaticGun.canceled += instance.OnAutomaticGun;
+            @NextItem.started += instance.OnNextItem;
+            @NextItem.performed += instance.OnNextItem;
+            @NextItem.canceled += instance.OnNextItem;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="InventoryActions" />
+        private void UnregisterCallbacks(IInventoryActions instance)
+        {
+            @ShotGun.started -= instance.OnShotGun;
+            @ShotGun.performed -= instance.OnShotGun;
+            @ShotGun.canceled -= instance.OnShotGun;
+            @AutomaticGun.started -= instance.OnAutomaticGun;
+            @AutomaticGun.performed -= instance.OnAutomaticGun;
+            @AutomaticGun.canceled -= instance.OnAutomaticGun;
+            @NextItem.started -= instance.OnNextItem;
+            @NextItem.performed -= instance.OnNextItem;
+            @NextItem.canceled -= instance.OnNextItem;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="InventoryActions.UnregisterCallbacks(IInventoryActions)" />.
+        /// </summary>
+        /// <seealso cref="InventoryActions.UnregisterCallbacks(IInventoryActions)" />
+        public void RemoveCallbacks(IInventoryActions instance)
+        {
+            if (m_Wrapper.m_InventoryActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="InventoryActions.AddCallbacks(IInventoryActions)" />
+        /// <seealso cref="InventoryActions.RemoveCallbacks(IInventoryActions)" />
+        /// <seealso cref="InventoryActions.UnregisterCallbacks(IInventoryActions)" />
+        public void SetCallbacks(IInventoryActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InventoryActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InventoryActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="InventoryActions" /> instance referencing this action map.
+    /// </summary>
+    public InventoryActions @Inventory => new InventoryActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Character" which allows adding and removing callbacks.
     /// </summary>
@@ -655,25 +772,40 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnUsing(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "NextInventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNextInventory(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Inventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnInventory(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Grenade" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnGrenade(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Inventory" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="InventoryActions.AddCallbacks(IInventoryActions)" />
+    /// <seealso cref="InventoryActions.RemoveCallbacks(IInventoryActions)" />
+    public interface IInventoryActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "ShotGun" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShotGun(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AutomaticGun" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAutomaticGun(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NextItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNextItem(InputAction.CallbackContext context);
     }
 }

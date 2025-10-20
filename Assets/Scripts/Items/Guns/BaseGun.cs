@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class BaseGun : MonoBehaviour, IGun
 {
+    public abstract GunType GetGunType();
+
     public float DamageValue { get; protected set; }
 
     public virtual void TriggerOff() {}

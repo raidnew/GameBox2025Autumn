@@ -841,6 +841,7 @@ MonoBehaviour:
   _isGun: 1
   _model: {fileID: 7445926674234748078, guid: f19daf80486b6a94d831c525def5af54, type: 3}
   _icon: {fileID: 21300000, guid: 46a25ac4993b2b441ad8071fe21c8f51, type: 3}
+  _name: 
 --- !u!23 &269804427
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2502,6 +2503,7 @@ MonoBehaviour:
   _isGun: 1
   _model: {fileID: 8942552747755088852, guid: 28c366fee694b9b44b6737436f05ad1c, type: 3}
   _icon: {fileID: 21300000, guid: 46a25ac4993b2b441ad8071fe21c8f51, type: 3}
+  _name: 
 --- !u!23 &1158768349
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3869,6 +3871,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 1158768346}
+  immediatlyUse: 1
+  getByTouch: 1
 --- !u!1 &1830033231
 GameObject:
   m_ObjectHideFlags: 0
@@ -4092,6 +4096,7 @@ GameObject:
   - component: {fileID: 1906415351}
   - component: {fileID: 1906415352}
   - component: {fileID: 1906415350}
+  - component: {fileID: 1906415353}
   - component: {fileID: 1906415349}
   m_Layer: 0
   m_Name: CharacterYBot
@@ -4215,6 +4220,19 @@ MonoBehaviour:
   _pointStart: {fileID: 1709681858}
   _grenadePrefab: {fileID: 7684852908670485262, guid: ebfd548b14f39fa4d8bbc1e94639233a,
     type: 3}
+--- !u!114 &1906415353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906415343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d52eb8bbc2b8e44a0621fe3da66016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inventoryOwnerObject: {fileID: 1906415343}
 --- !u!1 &1917687042
 GameObject:
   m_ObjectHideFlags: 0
@@ -4284,6 +4302,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObject: {fileID: 269804423}
+  immediatlyUse: 1
+  getByTouch: 1
 --- !u!4 &1963141384 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8046933898814630503, guid: 9bcd2c2496664464dbe019e765bde982,

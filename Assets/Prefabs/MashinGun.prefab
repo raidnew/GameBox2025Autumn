@@ -129,6 +129,7 @@ MonoBehaviour:
   _shotSoundEffect: {fileID: 4042732376046982176}
   _damageValue: 1
   _muzzle: {fileID: 7219799053568253228}
+  _type: 1
   _delayBeetweenShots: 0.2
 --- !u!1 &9025025589669753455
 GameObject:

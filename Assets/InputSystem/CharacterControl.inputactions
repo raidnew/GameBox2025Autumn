@@ -61,24 +61,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "NextInventory",
-                    "type": "Button",
-                    "id": "22d5b1d4-6b1c-4166-8ba1-13f48e6387e4",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Inventory",
-                    "type": "Value",
-                    "id": "701de093-5920-4734-be04-0316e95704d0",
-                    "expectedControlType": "Integer",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Grenade",
                     "type": "Button",
                     "id": "b1e4ec1d-5784-4268-adb6-0d15c3784d92",
@@ -201,45 +183,80 @@
                 },
                 {
                     "name": "",
-                    "id": "3e0a1bde-c98a-42e1-ac5b-fc7fda87779b",
-                    "path": "<Keyboard>/period",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "NextInventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6e4d3014-e3bf-4c7c-a655-01155050cc39",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ddb4352f-73ae-413f-9b41-6e6473a03e1c",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c3196e4d-3da4-4486-96bd-e5057c45084a",
                     "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Grenade",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Inventory",
+            "id": "29109ec5-452e-4acd-b3b1-be0893788dd5",
+            "actions": [
+                {
+                    "name": "ShotGun",
+                    "type": "Button",
+                    "id": "1d3feecf-b749-4b3d-a1aa-ce86522ca1e0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AutomaticGun",
+                    "type": "Button",
+                    "id": "43c68dc2-dafc-4bbc-9386-21e02bdc415f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "NextItem",
+                    "type": "Button",
+                    "id": "a3255283-f02c-4730-b6e7-ba95da60a086",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ce4cb229-2095-47cb-816c-b8256daeb4eb",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShotGun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "52fdc029-3108-477f-95af-d44e07ac9e6c",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AutomaticGun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "45efe762-d172-4b25-896e-0c596560936d",
+                    "path": "<Keyboard>/period",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
