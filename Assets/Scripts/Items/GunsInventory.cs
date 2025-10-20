@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GunsInventory : MonoBehaviour
 {
+    [SerializeField] private InventoryInput _input;
     [SerializeField] private GameObject _inventoryOwnerObject;
     private IItemsUser _inventoryOwner;
 
@@ -20,11 +21,13 @@ public class GunsInventory : MonoBehaviour
     private void OnEnable()
     {
         ItemContainer.PickupItem += OnPickupItem;
+        _input.SelectGunItem += OnSelectGun;
     }
 
     private void OnDisable()
     {
         ItemContainer.PickupItem -= OnPickupItem;
+        _input.SelectGunItem -= OnSelectGun;
     }
 
     private void OnPickupItem(IItem item)
@@ -32,8 +35,20 @@ public class GunsInventory : MonoBehaviour
         IGun gun;
         if(item.IsGun && item.ItemModel.TryGetComponent<IGun>(out gun))
         {
-            int index = Array.FindIndex(_orderGuns, guntype => guntype == gun.GetGunType());
-            _gunsInventory[index] = item;
+            _gunsInventory[GetIndexGun(gun.GetGunType())] = item;
         }
+    }
+
+    private void OnSelectGun(GunType gunType)
+    {
+        if(_gunsInventory[GetIndexGun(gunType)] != null)
+        {
+            _inventoryOwner.Get(_gunsInventory[GetIndexGun(gunType)]);
+        }
+    }
+
+    private int GetIndexGun(GunType gunType)
+    {
+        return Array.FindIndex(_orderGuns, type => type == gunType);
     }
 }
