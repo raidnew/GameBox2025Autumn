@@ -13,6 +13,7 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
     [SerializeField] private CharacterAnimation _animation;
     [SerializeField] private Transform _rightHandConnector;
     [SerializeField] private GrenadeLauncher _grenadeLauncher;
+    [SerializeField] private GunsInventory _gunInventory;
 
     private IGun _currentGun;
     private GameObject _currentGunObject;
@@ -34,6 +35,7 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
         _input.BeginGrenadeThrow += OnBeginGrenadeThrow;
         _animation.GrenadeIsThrowing += GrenadeThrow;
         _animation.GrenadeHasThrowed += OnEndGrenadeThrow;
+        _gunInventory.ItemSelected += Get;
     }
 
     private void OnDisable()
@@ -43,6 +45,7 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser
         _input.BeginGrenadeThrow -= OnBeginGrenadeThrow;
         _animation.GrenadeIsThrowing -= GrenadeThrow;
         _animation.GrenadeHasThrowed -= OnEndGrenadeThrow;
+        _gunInventory.ItemSelected -= Get;
     }
 
     private void HideCurrentGun()

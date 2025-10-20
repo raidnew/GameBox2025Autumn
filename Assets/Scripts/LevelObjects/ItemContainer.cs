@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ItemContainer : MonoBehaviour
 {
-    static public Action<IItem> PickupItem;
+    static public Action<IItem, bool> PickupItem;
 
     [SerializeField] GameObject itemObject;
     [SerializeField] bool immediatlyUse;
@@ -24,9 +24,7 @@ public class ItemContainer : MonoBehaviour
 
         if(other.TryGetComponent<IItemsUser>(out itemUser) && getByTouch)
         {
-            PickupItem?.Invoke(_item);
-            if(immediatlyUse)
-                itemUser.Get(_item);
+            PickupItem?.Invoke(_item, immediatlyUse);
         }
     }
 }
