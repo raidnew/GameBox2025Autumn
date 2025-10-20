@@ -10,7 +10,7 @@ public class InverntoryView : MonoBehaviour
     [SerializeField] private GameObject _itemsContainer;
 
     private IInventory _inventory;
-
+    private InventoryItem? _currentSelected;
     private List<ItemInInventory> _items = new List<ItemInInventory>();
 
     private void Awake()
@@ -32,9 +32,12 @@ public class InverntoryView : MonoBehaviour
         _inventory.ItemSelected -= OnItemSelected;
     }
 
-    private void OnItemSelected(IItem item)
+    private void OnItemSelected(IItem selectedItem)
     {
-        
+        if (_currentSelected != null) _currentSelected.Select(false);
+        ItemInInventory inventoryItem = _items.Find(item => item.item == selectedItem);
+        inventoryItem.itemView.Select(true);
+        _currentSelected = inventoryItem.itemView;
     }
 
     private void OnItemRemoved(IItem item)
@@ -44,15 +47,13 @@ public class InverntoryView : MonoBehaviour
 
     private void OnItemAdded(IItem item)
     {
-        GameObject view = Instantiate(_itemViewPrefab);
-
-        view.transform.position = new Vector3(_items.Count * 80, 0, 0);
-
+        GameObject view = Instantiate(_itemViewPrefab, _itemsContainer.transform, true);
+        RectTransform rt = view.GetComponent<RectTransform>();
+        rt.localPosition = new Vector3(_items.Count * 80, 0, 0);
         InventoryItem itemView = view.GetComponent<InventoryItem>();
         itemView.Init(item);
+        itemView.Select(false);
         ItemInInventory inventory = new ItemInInventory { item = item, itemView = itemView };
-        itemView.transform.parent = _itemsContainer.transform;
-
         _items.Add(inventory);
     }
 
