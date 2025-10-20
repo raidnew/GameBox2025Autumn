@@ -9,8 +9,9 @@ public class BulletHoleManager : MonoBehaviour
     [SerializeField] private GameObject _bulletHoleDecalPrefab;
     [SerializeField] private Transform _bulletHoleContainer;
     [SerializeField] private int _maxCountBulletHole = 10;
+    [SerializeField] private float _holesTimeToLive = 10;
 
-    private List<GameObject> _bulletHoles = new List<GameObject>();
+    private List<BulletHoleData> _bulletHoles = new List<BulletHoleData>();
 
     private void OnEnable()
     {
@@ -24,12 +25,17 @@ public class BulletHoleManager : MonoBehaviour
         DestoyableObject.Crush -= CheckHoleOnObject;
     }
 
+    private void Update()
+    {
+        CheckHoleOnTTL();
+    }
+
     private void OnBulletHole(RaycastHit hit)
     {
-        _bulletHoles.Add(NewBulletHole(hit));
+        _bulletHoles.Add(new BulletHoleData { timeCreation = Time.time, _bulletHole = NewBulletHole(hit) });
         if(_bulletHoles.Count > _maxCountBulletHole)
         {
-            GameObject removedHole = _bulletHoles.First();
+            GameObject removedHole = _bulletHoles.First()._bulletHole;
             _bulletHoles.RemoveAt(0);
             Destroy(removedHole);
         }
@@ -47,13 +53,31 @@ public class BulletHoleManager : MonoBehaviour
     {
         for (int  i = _bulletHoles.Count - 1; i >= 0; i--)
         {
-            GameObject hole = _bulletHoles[i];
+            GameObject hole = _bulletHoles[i]._bulletHole;
             if (hole.transform.parent == removedObject.transform)
             {
                 Destroy(hole);
                 _bulletHoles.RemoveAt(i);
             }
-
         }
     }
+
+    private void CheckHoleOnTTL()
+    {
+        for (int i = _bulletHoles.Count - 1; i >= 0; i--)
+        {
+            if (_bulletHoles[i].timeCreation + _holesTimeToLive < Time.time)
+            {
+                Destroy(_bulletHoles[i]._bulletHole);
+                _bulletHoles.RemoveAt(i);
+            }
+        }
+    }
+
+    private struct BulletHoleData
+    {
+        public GameObject _bulletHole;
+        public float timeCreation;
+    }
 }
+
