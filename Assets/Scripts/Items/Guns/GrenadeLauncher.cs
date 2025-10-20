@@ -20,8 +20,6 @@ public class GrenadeLauncher : BaseGun, IGrenadeLauncher
             Quaternion turnUp = Quaternion.AngleAxis(45, axis);
             direction = turnUp * direction;
             grenade.GetComponent<Rigidbody>().AddForce(direction * _throwPower);
-
-            Debug.DrawRay(_pointStart.position, direction, Color.red, 3f);
         }
     }
 
