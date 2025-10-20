@@ -8,8 +8,16 @@ public class ShotSoundEffect : MonoBehaviour
 
     public void Play()
     {
+        StartCoroutine(PlaySound(_shotSound));
+    }
+
+    private IEnumerator PlaySound(AudioClip audioClip)
+    {
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = _shotSound;
+        audioSource.clip = audioClip;
         audioSource.Play();
+        yield return new WaitForSeconds(audioClip.length);
+        Destroy(audioSource);
+        yield return true;
     }
 }
