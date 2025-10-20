@@ -841,7 +841,7 @@ MonoBehaviour:
   _isGun: 1
   _model: {fileID: 7445926674234748078, guid: f19daf80486b6a94d831c525def5af54, type: 3}
   _icon: {fileID: 21300000, guid: 46a25ac4993b2b441ad8071fe21c8f51, type: 3}
-  _name: 
+  _name: AutoGun
 --- !u!23 &269804427
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2457,7 +2457,7 @@ MonoBehaviour:
   _isGun: 1
   _model: {fileID: 8942552747755088852, guid: 28c366fee694b9b44b6737436f05ad1c, type: 3}
   _icon: {fileID: 21300000, guid: 2d5cb1403fea1f842b5aff4cea13ed0c, type: 3}
-  _name: 
+  _name: ShotGun
 --- !u!23 &1158768349
 MeshRenderer:
   m_ObjectHideFlags: 0
