@@ -3389,7 +3389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823688464}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25815234, y: -0.000000040718252, z: 0.000000010880309, w: 0.9661042}
+  m_LocalRotation: {x: 0.2581523, y: 0, z: 0, w: 0.9661042}
   m_LocalPosition: {x: 0, y: 4.2, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3629,6 +3629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemObject: {fileID: 1158768346}
   immediatlyUse: 1
+  getOnce: 0
   getByTouch: 1
 --- !u!1 &1830033231
 GameObject:
@@ -4061,6 +4062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemObject: {fileID: 269804423}
   immediatlyUse: 1
+  getOnce: 1
   getByTouch: 1
 --- !u!4 &1963141384 stripped
 Transform:
@@ -5068,7 +5070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 871010094}
-  _thirdPersonCamera: {fileID: 89078485}
+  _thirdPersonCamera: {fileID: 0}
   _firstPersonCamera: {fileID: 1667611794}
   _speedRotation: 0.01
 --- !u!114 &1307417929420412006

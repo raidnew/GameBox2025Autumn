@@ -9,6 +9,7 @@ public class ItemContainer : MonoBehaviour
 
     [SerializeField] GameObject itemObject;
     [SerializeField] bool immediatlyUse;
+    [SerializeField] bool getOnce;
     [SerializeField] bool getByTouch = true;
 
     private IItem _item;
@@ -21,10 +22,13 @@ public class ItemContainer : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         IItemsUser itemUser;
+        if (other.TryGetComponent<IItemsUser>(out itemUser) && getByTouch)
+            ItemPicked();
+    }
 
-        if(other.TryGetComponent<IItemsUser>(out itemUser) && getByTouch)
-        {
-            PickupItem?.Invoke(_item, immediatlyUse);
-        }
+    private void ItemPicked()
+    {
+        PickupItem?.Invoke(_item, immediatlyUse);
+        if (getOnce) Destroy(gameObject);
     }
 }
