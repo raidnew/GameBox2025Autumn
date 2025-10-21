@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class GunsInventory : MonoBehaviour, IInventory
@@ -13,6 +14,7 @@ public class GunsInventory : MonoBehaviour, IInventory
 
     private GunType[] _orderGuns = { GunType.ShotGun, GunType.Automatic };
     private IItem[] _gunsInventory;
+    private int _selectedIndex = -1;
 
     private void Awake()
     {
@@ -23,12 +25,13 @@ public class GunsInventory : MonoBehaviour, IInventory
     {
         ItemContainer.PickupItem += OnPickupItem;
         _input.SelectGunItem += OnSelectGun;
+        _input.NextItem += OnNextGun;
     }
 
     private void OnDisable()
     {
         ItemContainer.PickupItem -= OnPickupItem;
-        _input.SelectGunItem -= OnSelectGun;
+        _input.NextItem -= OnNextGun;
     }
 
     private void OnPickupItem(IItem item, bool immediatlyUse)
@@ -41,7 +44,6 @@ public class GunsInventory : MonoBehaviour, IInventory
                 Debug.Log("Gun already picked");
                 return;
             }
-
             _gunsInventory[GetIndexGun(gun.GetGunType())] = item;
             ItemAdded?.Invoke(item);
             if (immediatlyUse) OnSelectGun(gun.GetGunType());
@@ -50,12 +52,24 @@ public class GunsInventory : MonoBehaviour, IInventory
 
     private void OnSelectGun(GunType gunType)
     {
-        if (_gunsInventory[GetIndexGun(gunType)] != null)
-            ItemSelected?.Invoke(_gunsInventory[GetIndexGun(gunType)]);
+        SelectGun(GetIndexGun(gunType));
     }
 
     private int GetIndexGun(GunType gunType)
     {
         return Array.FindIndex(_orderGuns, type => type == gunType);
+    }
+
+    private void OnNextGun()
+    {
+        int newIndex = (_selectedIndex + 1) % _gunsInventory.Length;
+        SelectGun(newIndex);
+    }
+
+    private void SelectGun(int index)
+    {
+        if (_gunsInventory[index] == null) return;
+        _selectedIndex = index;
+        ItemSelected?.Invoke(_gunsInventory[index]);
     }
 }
