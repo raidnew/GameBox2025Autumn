@@ -10,6 +10,7 @@ public class InverntoryView : MonoBehaviour
     [SerializeField] private GameObject _itemsContainer;
 
     private IInventory _inventory;
+    private bool _hasSelectedItem;
     private InventoryItem? _currentSelected;
     private List<ItemInInventory> _items = new List<ItemInInventory>();
 
@@ -34,10 +35,11 @@ public class InverntoryView : MonoBehaviour
 
     private void OnItemSelected(IItem selectedItem)
     {
-        if (_currentSelected != null) _currentSelected.Select(false);
+        if (_hasSelectedItem) _currentSelected.Select(false);
         ItemInInventory inventoryItem = _items.Find(item => item.item == selectedItem);
         inventoryItem.itemView.Select(true);
         _currentSelected = inventoryItem.itemView;
+        _hasSelectedItem = true;
     }
 
     private void OnItemRemoved(IItem item)
