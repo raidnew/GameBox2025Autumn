@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterGunsUser : MonoBehaviour, IItemsUser
+public class CharacterGunsUser : MonoBehaviour, IItemsUser, IGunsMan
 {
-    public Action Armed;
-    public Action DisArmed;
-    public Action BeginGrenadeThrow;
+    public Action Armed { get; set; }
+    public Action DisArmed { get; set; }
+    public Action BeginGrenadeThrow { get; set; }
 
     [SerializeField] private CharacterInput _input;
     [SerializeField] private CharacterAnimation _animation;
