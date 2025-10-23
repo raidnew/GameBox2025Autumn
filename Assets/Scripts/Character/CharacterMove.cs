@@ -90,7 +90,8 @@ public class CharacterMove : MonoBehaviour
 
     private void OnJump()
     {
-        _characterRb.AddForce(Vector3.up * _jumpPower);
+        if(IsOnGround)
+            _characterRb.AddForce(Vector3.up * _jumpPower);
     }
 
     private void OnMove(Vector2 direction)
