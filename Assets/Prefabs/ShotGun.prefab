@@ -4976,7 +4976,7 @@ GameObject:
   - component: {fileID: 267885484329787332}
   - component: {fileID: 4123025884951079224}
   - component: {fileID: 2771225061199036023}
-  - component: {fileID: 9223017902948196611}
+  - component: {fileID: -7702660896253834582}
   m_Layer: 0
   m_Name: ShotGun
   m_TagString: Untagged
@@ -5075,7 +5075,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 58a8e304d18a17440b984341113ad392, type: 2}
---- !u!114 &9223017902948196611
+--- !u!114 &-7702660896253834582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5084,13 +5084,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8942552747755088852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6951dd567582da48aad4ae9118001b4, type: 3}
+  m_Script: {fileID: 11500000, guid: b47250d77796e3540a3d11d24e9d46d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _shotEffect: {fileID: 4242192853925192497}
   _shotSoundEffect: {fileID: 4799189988367183739}
   _damageValue: 2
   _muzzle: {fileID: 7619138050992194886}
+  _type: 0
 --- !u!1001 &6238698379351025599
 PrefabInstance:
   m_ObjectHideFlags: 0
