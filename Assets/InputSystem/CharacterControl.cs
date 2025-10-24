@@ -154,6 +154,15 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ViewDistance"",
+                    ""type"": ""Value"",
+                    ""id"": ""32ede545-c7c9-45fd-8f43-9a3361160f88"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -277,6 +286,17 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
                     ""action"": ""Grenade"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb78c468-55ea-4d19-9e0a-fc79e80c4868"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ViewDistance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -360,6 +380,7 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         m_Character_Shoting = m_Character.FindAction("Shoting", throwIfNotFound: true);
         m_Character_Using = m_Character.FindAction("Using", throwIfNotFound: true);
         m_Character_Grenade = m_Character.FindAction("Grenade", throwIfNotFound: true);
+        m_Character_ViewDistance = m_Character.FindAction("ViewDistance", throwIfNotFound: true);
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_ShotGun = m_Inventory.FindAction("ShotGun", throwIfNotFound: true);
@@ -453,6 +474,7 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Shoting;
     private readonly InputAction m_Character_Using;
     private readonly InputAction m_Character_Grenade;
+    private readonly InputAction m_Character_ViewDistance;
     /// <summary>
     /// Provides access to input actions defined in input action map "Character".
     /// </summary>
@@ -492,6 +514,10 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Character/Grenade".
         /// </summary>
         public InputAction @Grenade => m_Wrapper.m_Character_Grenade;
+        /// <summary>
+        /// Provides access to the underlying input action "Character/ViewDistance".
+        /// </summary>
+        public InputAction @ViewDistance => m_Wrapper.m_Character_ViewDistance;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -539,6 +565,9 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @Grenade.started += instance.OnGrenade;
             @Grenade.performed += instance.OnGrenade;
             @Grenade.canceled += instance.OnGrenade;
+            @ViewDistance.started += instance.OnViewDistance;
+            @ViewDistance.performed += instance.OnViewDistance;
+            @ViewDistance.canceled += instance.OnViewDistance;
         }
 
         /// <summary>
@@ -571,6 +600,9 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
             @Grenade.started -= instance.OnGrenade;
             @Grenade.performed -= instance.OnGrenade;
             @Grenade.canceled -= instance.OnGrenade;
+            @ViewDistance.started -= instance.OnViewDistance;
+            @ViewDistance.performed -= instance.OnViewDistance;
+            @ViewDistance.canceled -= instance.OnViewDistance;
         }
 
         /// <summary>
@@ -778,6 +810,13 @@ public partial class @CharacterControl: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnGrenade(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ViewDistance" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnViewDistance(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Inventory" which allows adding and removing callbacks.

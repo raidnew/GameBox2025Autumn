@@ -11,7 +11,7 @@ public class InverntoryView : MonoBehaviour
 
     private IInventory _inventory;
     private bool _hasSelectedItem;
-    private InventoryItem? _currentSelected;
+    private InventoryItem _currentSelected;
     private List<ItemInInventory> _items = new List<ItemInInventory>();
 
     private void Awake()

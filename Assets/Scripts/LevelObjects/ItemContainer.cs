@@ -23,12 +23,12 @@ public class ItemContainer : MonoBehaviour
     {
         IItemsUser itemUser;
         if (other.TryGetComponent<IItemsUser>(out itemUser) && getByTouch)
-            ItemPicked();
+            ItemPicked(itemUser);
     }
 
-    private void ItemPicked()
+    private void ItemPicked(IItemsUser itemUser)
     {
-        PickupItem?.Invoke(_item, immediatlyUse);
+        itemUser.PickupItem(_item, immediatlyUse);
         if (getOnce) Destroy(gameObject);
     }
 }

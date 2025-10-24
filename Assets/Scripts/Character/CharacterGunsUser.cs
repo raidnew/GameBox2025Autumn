@@ -19,14 +19,10 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser, IGunsMan
     private GameObject _currentGunObject;
     private GameObject _currentItem;
 
-    public void Get(IItem item)
+    public void PickupItem(IItem item, bool immediatlyUse = false)
     {
-        if (item.IsGun)
-        {
-            HideCurrentGun();
-            GetToRightHand(item.ItemModel);
-        }
-    }
+        _gunInventory.PutItem(item, immediatlyUse);
+    }   
 
     private void OnEnable()
     {
@@ -46,6 +42,15 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser, IGunsMan
         _animation.GrenadeIsThrowing -= GrenadeThrow;
         _animation.GrenadeHasThrowed -= OnEndGrenadeThrow;
         _gunInventory.ItemSelected -= Get;
+    }
+
+    private void Get(IItem item)
+    {
+        if (item.IsGun)
+        {
+            HideCurrentGun();
+            GetToRightHand(item.ItemModel);
+        }
     }
 
     private void HideCurrentGun()
@@ -92,4 +97,5 @@ public class CharacterGunsUser : MonoBehaviour, IItemsUser, IGunsMan
     {
         GetToRightHand(_currentItem);
     }
+
 }

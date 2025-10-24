@@ -1,4 +1,4 @@
 public interface IItemsUser
 {
-    void Get(IItem item);
+    void PickupItem(IItem item, bool immediatlyUse = false);
 }

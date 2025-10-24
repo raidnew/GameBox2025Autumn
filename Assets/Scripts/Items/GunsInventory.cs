@@ -22,15 +22,26 @@ public class GunsInventory : MonoBehaviour, IInventory
 
     private void OnEnable()
     {
-        ItemContainer.PickupItem += OnPickupItem;
+        //ItemContainer.PickupItem += OnPickupItem;
         _input.SelectGunItem += OnSelectGun;
         _input.NextItem += OnNextGun;
     }
 
     private void OnDisable()
     {
-        ItemContainer.PickupItem -= OnPickupItem;
+        ///ItemContainer.PickupItem -= OnPickupItem;
+        _input.SelectGunItem -= OnSelectGun;
         _input.NextItem -= OnNextGun;
+    }
+
+    public void PutItem(IItem item, bool immediatlyUse)
+    {
+        OnPickupItem(item, immediatlyUse);
+    }
+
+    public void RemoveItem(IItem item)
+    {
+        throw new NotImplementedException();
     }
 
     private void OnPickupItem(IItem item, bool immediatlyUse)
