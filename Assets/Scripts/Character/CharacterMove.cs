@@ -82,7 +82,7 @@ public class CharacterMove : MonoBehaviour
         Vector3 currentVelocity = _characterRb.velocity;
 
         //If before jump character had had not speed fater than air speed;
-        if (Math.Abs(currentVelocity.x) > Math.Abs(velocityVector.x) && velocityVector.z != 0) velocityVector.x = currentVelocity.x;
+        if (Math.Abs(currentVelocity.x) > Math.Abs(velocityVector.x) && velocityVector.x != 0) velocityVector.x = currentVelocity.x;
         if (Math.Abs(currentVelocity.z) > Math.Abs(velocityVector.z) && velocityVector.z != 0) velocityVector.z = currentVelocity.z;
 
         _characterRb.velocity = new Vector3(velocityVector.x, _characterRb.velocity.y, velocityVector.z);
