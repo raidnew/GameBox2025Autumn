@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMove : MonoBehaviour
+public class CharacterMove : MonoBehaviour, IWalker
 {
-    public Action<Vector2> Move;
-    public Action LeaveGround;
-    public Action GetLanded;
+    public Action<Vector2> Move { get; set; }
+    public Action LeaveGround { get; set; }
+    public Action GetLanded { get; set; }
 
     [SerializeField] private CharacterInput _input;
     [SerializeField] private Rigidbody _characterRb;
