@@ -1,0 +1,39 @@
+Ввод
+  Scripts\Items\InventoryInput.cs
+  Scripts\Character\CharacterInput.cs
+  
+Персонаж
+  Scripts\Character\CharacterActions.cs - События персонажа
+  Scripts\Character\CharacterAnimation.cs - Анимации
+  Scripts\Character\CharacterGunsUser.cs - Стрельба
+  Scripts\Character\CharacterMove.cs - Перемещение
+  Scripts\Character\CharacterView.cs - Взгляд
+
+Эффекты
+  Scripts\Effects\BulletHoleManager.cs - пулевые отверстия
+  
+GUI  
+  Scripts\GUI\InventoryItem.cs
+  Scripts\GUI\InverntoryView.cs
+  
+Interfaces
+  Scripts\Interfaces\IDestoyed.cs - Получает урон и уничтожается
+  Scripts\Interfaces\IGrenadeLauncher.cs - Бросает баллистческиое оружие
+  Scripts\Interfaces\IGround.cs - объект на котром можно прыгать и ходить
+  Scripts\Interfaces\IGun.cs - оружие
+  Scripts\Interfaces\IGunsMan.cs - стрелок
+  Scripts\Interfaces\IHealth.cs - здоровье
+  Scripts\Interfaces\IInventory.cs - инвентарь
+  Scripts\Interfaces\IItem.cs - вещь
+  Scripts\Interfaces\IItemsUser.cs - пользователь вещи
+  Scripts\Interfaces\IItemView.cs - Вид вещи в инвентаре
+  Scripts\Interfaces\IWatcher.cs - Может осматриваться
+  
+LevelObjects
+  Scripts\LevelObjects\DestoyableObject.cs - Уничтожаемый объект
+  Scripts\LevelObjects\DestroyableReshowedCube.cs - Объект появляется снова после уничтожения
+  Scripts\LevelObjects\Ground.cs - земля (можно ходить и прыгать)
+  Scripts\LevelObjects\Health.cs - здоровье
+  Scripts\LevelObjects\ItemContainer.cs - сундучок для вещей
+  Scripts\LevelObjects\ItemObject.cs - вещь
+  
