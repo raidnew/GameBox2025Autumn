@@ -63,9 +63,7 @@ public class CharacterMove : MonoBehaviour
         moveDiretion.Normalize();
         if (moveDiretion.magnitude > 0)
             _watcherObject.transform.forward = moveDiretion;
-
         if (_isMoving) MoveObject();
-        Debug.DrawRay(transform.position, moveDiretion, Color.green, 0.2f);
     }
 
     private void OnCollisionEnter(Collision collision)
