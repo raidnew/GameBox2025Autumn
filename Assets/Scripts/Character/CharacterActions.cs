@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterActions : MonoBehaviour
 {
     private List<IGround> _grounds = new List<IGround>();
-    private bool IsOnGround { get => _grounds.Count > 0; }
+    public bool IsOnGround { get => _grounds.Count > 0; }
     public Action LeaveGround { get; set; }
     public Action GetLanded { get; set; }
 

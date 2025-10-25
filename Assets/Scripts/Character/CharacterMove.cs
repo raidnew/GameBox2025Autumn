@@ -12,6 +12,7 @@ public class CharacterMove : MonoBehaviour
     [SerializeField] private Rigidbody _characterRb;
     [SerializeField] private GameObject _watcherObject;
     [SerializeField] private float _jumpPower = 250;
+    [SerializeField] private CharacterActions _characterAction;
 
     private bool _isMoving;
     private Vector3 _moveVector;
@@ -30,9 +31,6 @@ public class CharacterMove : MonoBehaviour
     }
 
     private IWatcher _watcher;
-
-    private List<IGround> _grounds = new List<IGround>();
-    private bool IsOnGround { get => _grounds.Count > 0; }
 
     private void Awake()
     {
@@ -66,29 +64,9 @@ public class CharacterMove : MonoBehaviour
         if (_isMoving) MoveObject();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        IGround ground;
-        if (collision.collider.TryGetComponent<IGround>(out ground))
-        {
-            _grounds.Add(ground);
-            if (IsOnGround) GetLanded?.Invoke();
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        IGround ground;
-        if (collision.collider.TryGetComponent<IGround>(out ground))
-        {
-            _grounds.Remove(ground);
-            if (!IsOnGround) LeaveGround?.Invoke();
-        }
-    }
-
     private void OnJump()
     {
-        if(IsOnGround)
+        if(_characterAction.IsOnGround)
             _characterRb.AddForce(Vector3.up * _jumpPower);
     }
 
@@ -100,7 +78,7 @@ public class CharacterMove : MonoBehaviour
     private void MoveObject()
     {
         Vector3 velocityVector = _watcherObject.transform.forward * MoveVector.y + _watcherObject.transform.right * MoveVector.x;
-        if (!IsOnGround) velocityVector = velocityVector * 0.25f; //Low speed in air
+        if (!_characterAction.IsOnGround) velocityVector = velocityVector * 0.25f; //Low speed in air
         Vector3 currentVelocity = _characterRb.velocity;
         if (Math.Abs(currentVelocity.x) > Math.Abs(velocityVector.x) && velocityVector.z != 0) velocityVector.x = currentVelocity.x;
         if (Math.Abs(currentVelocity.z) > Math.Abs(velocityVector.z) && velocityVector.z != 0) velocityVector.z = currentVelocity.z;
