@@ -49,14 +49,23 @@ public class InverntoryView : MonoBehaviour
 
     private void OnItemAdded(IItem item)
     {
+
+        int orderInInventory = 0;
+        if (item.IsGun && item.ItemModel.TryGetComponent<IGun>(out IGun gun))
+            orderInInventory = (int)gun.GetGunType();
+        _items.Add(CreateInventoryCell(item, new Vector3(orderInInventory * 80, 0, 0)));
+    }
+
+    private ItemInInventory CreateInventoryCell(IItem item, Vector3 position)
+    {
         GameObject view = Instantiate(_itemViewPrefab, _itemsContainer.transform, true);
         RectTransform rt = view.GetComponent<RectTransform>();
-        rt.localPosition = new Vector3(_items.Count * 80, 0, 0);
         InventoryItem itemView = view.GetComponent<InventoryItem>();
         itemView.Init(item);
         itemView.Select(false);
         ItemInInventory inventory = new ItemInInventory { item = item, itemView = itemView };
-        _items.Add(inventory);
+        rt.localPosition = position;
+        return inventory;
     }
 
     private struct ItemInInventory
