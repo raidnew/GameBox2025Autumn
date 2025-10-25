@@ -3802,6 +3802,7 @@ GameObject:
   - component: {fileID: 1830033233}
   - component: {fileID: 1830033237}
   - component: {fileID: 1830033236}
+  - component: {fileID: 1830033238}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -3921,6 +3922,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1830033236}
+--- !u!114 &1830033238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830033231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4722f638d801c4c82fd1fb69301087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1860305745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3935,6 +3948,7 @@ GameObject:
   - component: {fileID: 1860305747}
   - component: {fileID: 1860305751}
   - component: {fileID: 1860305750}
+  - component: {fileID: 1860305752}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -4054,6 +4068,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1860305750}
+--- !u!114 &1860305752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860305745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4722f638d801c4c82fd1fb69301087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1906415343
 GameObject:
   m_ObjectHideFlags: 0
