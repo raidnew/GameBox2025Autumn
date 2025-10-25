@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GunsInventory : MonoBehaviour, IInventory
@@ -22,14 +20,12 @@ public class GunsInventory : MonoBehaviour, IInventory
 
     private void OnEnable()
     {
-        //ItemContainer.PickupItem += OnPickupItem;
         _input.SelectGunItem += OnSelectGun;
         _input.NextItem += OnNextGun;
     }
 
     private void OnDisable()
     {
-        ///ItemContainer.PickupItem -= OnPickupItem;
         _input.SelectGunItem -= OnSelectGun;
         _input.NextItem -= OnNextGun;
     }

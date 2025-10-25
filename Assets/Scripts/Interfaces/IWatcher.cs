@@ -2,6 +2,6 @@
 
 public interface IWatcher
 {
-    Vector3 LookDirection { get; set; }
+    Vector3 LookDirection { get; }
 }
 

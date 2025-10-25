@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ItemObject : MonoBehaviour, IItem
 {
@@ -15,9 +12,6 @@ public class ItemObject : MonoBehaviour, IItem
     public Sprite ItemIcon => _icon;
     public GameObject ItemModel => _model;
 
-
-    public void Use()
-    {
-    }
+    public void Use() {}
 
 }

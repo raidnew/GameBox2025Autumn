@@ -1,8 +1,5 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 
 public class CharacterView : MonoBehaviour, IWatcher
 {
@@ -15,7 +12,7 @@ public class CharacterView : MonoBehaviour, IWatcher
     private bool _calcLookByCam;
     private Vector2 _lookMove;
 
-    public Vector3 LookDirection { get; set; }
+    public Vector3 LookDirection { get; private set; }
 
     private void OnEnable()
     {
