@@ -3348,7 +3348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 421e6baf07413ef46aa269fd54cdd6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkerObject: {fileID: 1906415343}
+  _walker: {fileID: 1906415346}
+  _action: {fileID: 1906415354}
   _timerShow: 5
   _helpScreen: {fileID: 629167673}
   _text: {fileID: 444880285}
@@ -5685,6 +5686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 1307417929420412001}
   _character: {fileID: 1906415346}
+  _characterActions: {fileID: 1906415354}
   _characterGunsUser: {fileID: 1906415351}
 --- !u!1001 &2475449778937617222
 PrefabInstance:

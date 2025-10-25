@@ -5,32 +5,30 @@ using TMPro;
 
 public class HelpScreen : MonoBehaviour
 {
-    [SerializeField] private GameObject _walkerObject;
+    [SerializeField] private CharacterMove _walker;
+    [SerializeField] private CharacterActions _action;
     [SerializeField] private float _timerShow;
     [SerializeField] private GameObject _helpScreen;
     [SerializeField] private TMP_Text _text;
     [SerializeField] private Image _background;
 
-    private IWalker _walker;
     private bool _isHidden = false;
     private float _hideTime;
 
     private void Awake()
     {
-        _walkerObject.TryGetComponent<IWalker>(out _walker);
     }
 
     private void OnEnable()
     {
         _walker.Move += OnMove;
-        _walker.LeaveGround += OnLeaveGround;
-
+        _action.LeaveGround += OnLeaveGround;
     }
 
     private void OnDisable()
     {
         _walker.Move -= OnMove;
-        _walker.LeaveGround -= OnLeaveGround;
+        _action.LeaveGround -= OnLeaveGround;
     }
 
     private void Update()

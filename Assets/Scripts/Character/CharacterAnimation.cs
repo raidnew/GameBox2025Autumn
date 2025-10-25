@@ -11,13 +11,14 @@ public class CharacterAnimation : MonoBehaviour
 
     [SerializeField] Animator _animator;
     [SerializeField] CharacterMove _character;
+    [SerializeField] CharacterActions _characterActions;
     [SerializeField] CharacterGunsUser _characterGunsUser;
 
     private void OnEnable()
     {
         _character.Move += OnMove;
-        _character.LeaveGround += OnJump;
-        _character.GetLanded += OnLanded;
+        _characterActions.LeaveGround += OnJump;
+        _characterActions.GetLanded += OnLanded;
         _characterGunsUser.Armed += OnArmed;
         _characterGunsUser.DisArmed += OnDisArmed;
         _characterGunsUser.BeginGrenadeThrow += OnBeginGrenadeThrow;
@@ -26,8 +27,8 @@ public class CharacterAnimation : MonoBehaviour
     private void OnDisable()
     {
         _character.Move -= OnMove;
-        _character.LeaveGround -= OnJump;
-        _character.GetLanded -= OnLanded;
+        _characterActions.LeaveGround -= OnJump;
+        _characterActions.GetLanded -= OnLanded;
         _characterGunsUser.Armed -= OnArmed;
         _characterGunsUser.DisArmed -= OnDisArmed;
         _characterGunsUser.BeginGrenadeThrow -= OnBeginGrenadeThrow;

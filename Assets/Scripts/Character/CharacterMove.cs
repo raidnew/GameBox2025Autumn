@@ -5,8 +5,6 @@ using UnityEngine;
 public class CharacterMove : MonoBehaviour, IWalker
 {
     public Action<Vector2> Move { get; set; }
-    public Action LeaveGround { get; set; }
-    public Action GetLanded { get; set; }
 
     [SerializeField] private CharacterInput _input;
     [SerializeField] private Rigidbody _characterRb;
